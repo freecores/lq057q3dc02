@@ -15,6 +15,15 @@ project set speed -7
 project set synthesis_tool "XST (VHDL/Verilog)"
 project set generated_simulation_language "ModelSim-SE Mixed"
 
+# Set Generate Programming File properties
+project set "Unused IOB Pins" "Pull Up"
+project set "FPGA Start-Up Clock" "JTAG Clock"
+project set "Done (Output Events)" 6
+project set "Enable Outputs (Output Events)" 3
+project set "Release Write Enable (Output Events)" 5
+project set "Release DLL (Output Events)" 4
+
+
 # Go back to user source directory
 cd ../coe_image_gen
 

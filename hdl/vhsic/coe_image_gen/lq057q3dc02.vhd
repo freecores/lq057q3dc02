@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: lq057q3dc02.vhd,v 1.1 2007-05-25 11:20:02 jwdonal Exp $
+-- $Id: lq057q3dc02.vhd,v 1.2 2007-05-25 11:27:37 jwdonal Exp $
 --
 -- Description:
 --   Top level file for the lq057q3dc02 pcore.
@@ -80,25 +80,15 @@ ENTITY lq057q3dc02 IS
   
     --One useful piece of info for this 320x240x18bpp screen is that the
     --largest amount of image data it can support with all color bits used
-    --is 1,382,400 bits = 172,800 bytes.  The Virtex-II Pro has enough BRAM space
-    --to support 306KB = 313,344.  So you could not possible fill up the BRAM
-    --with a single image.
+    --is 1,382,400 bits = 172,800 bytes.  The Virtex-II Pro has enough BRAM
+    --space to support 306KB = 313,344 bytes.  So you could not possible
+    --fill up the BRAM with a single image.
     
-    --TODO: Make note that you can EASILY mistake success for failure when viewing
-    --a test image because the resolution of this LCD is soooooo low.  Be sure to look
-    --VERY carefully at the test image before you assume your algorithms are incorrect!
-    --TODO: Replace all C's with hard K's
-    --TODO: Make sure ALL vectors use GENERICS and NOT constants!!!!  IMPORTANT!
-    --TODO: Make bmpParse.c fprintf only 6 bits or DEPTH/3 in size.  Use this site: http://www.phim.unibe.ch/comp_doc/c_manual/C/PROBLEMS/binary_op.c
+    --NOTE! You can EASILY mistake success for failure when viewing a test
+    --image because the resolution of this LCD is soooooo low.  Be sure to look
+    --VERY carefully at the test image before you assume your algorithms are
+    --incorrect!
   
-    C_PIX_MOD_RED   : NATURAL := 1;
-    C_PIX_MOD_GREEN : NATURAL := 3;
-    C_PIX_MOD_BLUE  : NATURAL := 5;
-    
-    C_CNT_BIT_RED   : NATURAL := 0;
-    C_CNT_BIT_GREEN : NATURAL := 1;
-    C_CNT_BIT_BLUE  : NATURAL := 2;
-    
     --Video Controller (pass thru)
     C_RL_STATUS : STD_LOGIC := '0';
     C_UD_STATUS : STD_LOGIC := '1';
@@ -168,7 +158,7 @@ END ENTITY lq057q3dc02;
 --////////////////////////--
 ARCHITECTURE lq057q3dc02_arch OF lq057q3dc02 IS
 
-  --Connecting signal wires between components
+  --Connecting wires to carry signals b/w components
   signal CLK_LCD_wire : std_logic;
   signal HSYNCx_wire  : std_logic;
   signal VSYNCx_wire  : std_logic;

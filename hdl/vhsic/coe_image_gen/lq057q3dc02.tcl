@@ -16,7 +16,7 @@ project set synthesis_tool "XST (VHDL/Verilog)"
 project set generated_simulation_language "ModelSim-SE Mixed"
 
 # Go back to user source directory
-cd ../src
+cd ../coe_image_gen
 
 # add source files
 xfile add *.vhd *.ucf *.xco *.xaw

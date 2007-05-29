@@ -2,7 +2,7 @@
 SET flowvendor = Foundation_iSE
 SET vhdlsim = True
 SET verilogsim = True
-SET workingdirectory = D:\MyDocuments\xupv2p\practice\lq057q3dc02\basic_pixel_generator\ise_files
+SET workingdirectory = ..\ise_files
 SET speedgrade = -7
 SET simulationfiles = Behavioral
 SET asysymbol = True
@@ -24,7 +24,7 @@ SELECT Single_Port_Block_Memory family Xilinx,_Inc. 6.2
 # BEGIN Parameters
 CSET handshaking_pins=false
 CSET init_value=0
-CSET coefficient_file=..\src\c_code\full_screen_G.coe
+CSET coefficient_file=..\src\full_screen_G.coe
 CSET select_primitive=16kx1
 CSET initialization_pin_polarity=Active_Low
 CSET global_init_value=0

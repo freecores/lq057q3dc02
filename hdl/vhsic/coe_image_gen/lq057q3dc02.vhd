@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: lq057q3dc02.vhd,v 1.3 2007-05-29 07:29:41 jwdonal Exp $
+-- $Id: lq057q3dc02.vhd,v 1.4 2007-05-29 07:57:57 jwdonal Exp $
 --
 -- Description:
 --   Top level file for the lq057q3dc02 pcore.
@@ -244,10 +244,10 @@ begin
   PORT MAP (
     RST_IN          => "not"(RSTx),
     CLKIN_IN        => CLK_100M_PAD,
-    CLKIN_IBUFG_OUT => OPEN,       -- 100MHz clock if you need it (attach to BUFG)
-    CLK0_OUT        => OPEN,       -- 50MHz clock
-    CLKDV_OUT       => CLK_LCD_wire,
-    CLKFX_OUT       => OPEN        -- Attach this 25MHz clock to an output port for a logic analyzer
+    CLKIN_IBUFG_OUT => OPEN,         -- 100MHz clock if you need it (attach to BUFG)
+    CLK0_OUT        => OPEN,         -- 50MHz clock
+    CLKDV_OUT       => CLK_LCD_wire, -- 6.25MHz LCD Clock
+    CLKFX_OUT       => OPEN          -- Attach this 25MHz clock to an output port for a logic analyzer
   );
   
 

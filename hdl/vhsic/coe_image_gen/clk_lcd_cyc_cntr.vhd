@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: clk_lcd_cyc_cntr.vhd,v 1.2 2007-05-29 08:13:57 jwdonal Exp $
+-- $Id: clk_lcd_cyc_cntr.vhd,v 1.3 2007-05-29 09:16:48 jwdonal Exp $
 --
 -- Description:
 --   Counts the number of CLK_LCD cycles that have occured after C_VSYNC_TVS
@@ -92,9 +92,9 @@ ENTITY clk_lcd_cyc_cntr IS
     HSYNCx,
     VSYNCx : IN std_logic;
     
-    LINE_NUM : IN std_logic_vector(7 downto 0);
+    LINE_NUM : IN std_logic_vector(9-1 downto 0);
     
-    CLK_LCD_CYC_NUM : OUT std_logic_vector(8 downto 0)
+    CLK_LCD_CYC_NUM : OUT std_logic_vector(9-1 downto 0)
 
   );
   

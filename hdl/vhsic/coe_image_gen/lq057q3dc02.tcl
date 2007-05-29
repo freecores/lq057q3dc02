@@ -1,4 +1,45 @@
-# Tcl script to run in the Xilinx Tcl shell or the ISE Tcl Console
+##############################################################################
+# Copyright (C) 2007 Jonathon W. Donaldson
+#                    jwdonal a t opencores DOT org
+#
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+##############################################################################
+#
+# $Id: lq057q3dc02.tcl,v 1.4 2007-05-29 09:16:48 jwdonal Exp $
+#
+# Description:
+#   Tcl script to run in the Xilinx Tcl shell or the ISE Tcl Console.
+#
+# Structure:
+#   - xupv2p.ucf
+#   - components.vhd
+#   - lq057q3dc02_tb.vhd
+#   - lq057q3dc02.vhd
+#     - dcm_sys_to_lcd.xaw
+#     - video_controller.vhd
+#       - enab_control.vhd
+#       - hsyncx_control.vhd
+#       - vsyncx_control.vhd
+#       - clk_lcd_cyc_cntr.vhd
+#     - image_gen_bram.vhd
+#       - image_gen_bram_red.xco
+#       - image_gen_bram_green.xco
+#       - image_gen_bram_blue.xco
+#       
+##############################################################################
 
 # To run this script, `cd' to the directory containg this file
 # using the Tcl shell/console.  Type "source <filename>" at Tcl prompt.

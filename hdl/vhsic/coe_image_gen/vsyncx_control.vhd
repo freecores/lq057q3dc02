@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: vsyncx_control.vhd,v 1.2 2007-05-29 08:13:57 jwdonal Exp $
+-- $Id: vsyncx_control.vhd,v 1.3 2007-05-29 09:16:48 jwdonal Exp $
 --
 -- Description:
 --  This file controls VSYNCx.  VSYNCx is dependent upon the number of HSYNCx
@@ -92,9 +92,19 @@ USE IEEE.STD_LOGIC_UNSIGNED.ALL;
 --////////////////////--
 ENTITY vsyncx_control IS
   
+  -----------------------------------------------------------------
+  -- Generic Descriptions:
+  --
+  -- C_LINE_NUM_WIDTH   -- Must be at least 9 bits to hold maximum
+  --                    -- timespec of 280 lines.
+  -----------------------------------------------------------------
   generic (
+  
     C_VSYNC_TV,
-    C_VSYNC_TVP : POSITIVE
+    C_VSYNC_TVP : POSITIVE;
+
+    C_LINE_NUM_WIDTH : POSITIVE := 9
+
   );
   
   port (
@@ -103,10 +113,10 @@ ENTITY vsyncx_control IS
     CLK_LCD,
     HSYNCx : IN STD_LOGIC;
     
-    LINE_NUM : OUT STD_LOGIC_VECTOR(7 downto 0);
+    LINE_NUM : OUT STD_LOGIC_VECTOR(C_LINE_NUM_WIDTH-1 downto 0);
     
     VSYNCx : OUT STD_LOGIC
-        
+    
   );
   
 END ENTITY vsyncx_control;
@@ -121,7 +131,7 @@ ARCHITECTURE vsyncx_control_arch OF vsyncx_control IS
   
   --Stores current line number.
   --This register is attached to the LINE_NUM output.
-  signal line_num_reg : std_logic_vector(7 downto 0) := "00000000";
+  signal line_num_reg : std_logic_vector(C_LINE_NUM_WIDTH-1 downto 0) := (others => '0');
 
   ---------------------------------------------------------------
   -- States for VSYNCx_Line_Cntr_*_PROC

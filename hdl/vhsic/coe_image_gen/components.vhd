@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: components.vhd,v 1.2 2007-05-29 08:13:57 jwdonal Exp $
+-- $Id: components.vhd,v 1.3 2007-05-29 09:16:48 jwdonal Exp $
 --
 -- Description:
 --   This is a package that lists all of the components used in the design.
@@ -102,9 +102,9 @@ PACKAGE components IS
     HSYNCx,
     VSYNCx : IN std_logic;
     
-    LINE_NUM : IN std_logic_vector(7 downto 0);
+    LINE_NUM : IN std_logic_vector(9-1 downto 0);
     
-    CLK_LCD_CYC_NUM : OUT std_logic_vector(8 downto 0)
+    CLK_LCD_CYC_NUM : OUT std_logic_vector(9-1 downto 0)
   );
   END COMPONENT clk_lcd_cyc_cntr;
 
@@ -136,9 +136,9 @@ PACKAGE components IS
     RSTx,
     CLK_LCD : IN  STD_LOGIC;
     
-    LINE_NUM : OUT STD_LOGIC_VECTOR(7 downto 0);
+    LINE_NUM : OUT STD_LOGIC_VECTOR(9-1 downto 0);
     
-    CLK_LCD_CYC_NUM : OUT STD_LOGIC_VECTOR(8 downto 0);
+    CLK_LCD_CYC_NUM : OUT STD_LOGIC_VECTOR(9-1 downto 0);
     
     HSYNCx,
     VSYNCx,
@@ -181,7 +181,7 @@ PACKAGE components IS
     CLK_LCD,
     HSYNCx     : IN  STD_LOGIC;
     
-    LINE_NUM : OUT STD_LOGIC_VECTOR(7 downto 0);
+    LINE_NUM : OUT STD_LOGIC_VECTOR(9-1 downto 0);
   
     VSYNCx  : OUT STD_LOGIC
   );
@@ -202,7 +202,7 @@ PACKAGE components IS
     RSTx,
     CLK_LCD : IN STD_LOGIC;
     
-    CLK_LCD_CYC_NUM : IN STD_LOGIC_VECTOR(8 downto 0);
+    CLK_LCD_CYC_NUM : IN STD_LOGIC_VECTOR(9-1 downto 0);
     
     ENAB  : OUT STD_LOGIC
   );
@@ -229,9 +229,9 @@ PACKAGE components IS
     RSTx,
     CLK_LCD : IN STD_LOGIC;
     
-    LINE_NUM : IN STD_LOGIC_VECTOR(7 downto 0);
+    LINE_NUM : IN STD_LOGIC_VECTOR(9-1 downto 0);
     
-    CLK_LCD_CYC_NUM : IN STD_LOGIC_VECTOR(8 downto 0);
+    CLK_LCD_CYC_NUM : IN STD_LOGIC_VECTOR(9-1 downto 0);
     
     R,
     G,

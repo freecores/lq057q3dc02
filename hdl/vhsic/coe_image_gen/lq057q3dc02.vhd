@@ -18,14 +18,40 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: lq057q3dc02.vhd,v 1.5 2007-05-29 08:13:57 jwdonal Exp $
+-- $Id: lq057q3dc02.vhd,v 1.6 2007-05-29 09:16:48 jwdonal Exp $
 --
 -- Description:
---   Top level file for the lq057q3dc02 pcore.
+--   Top level file for the lq057q3dc02 pcore.  The lq057q3dc02 supports QVGA
+--   (320x240) mode only!
 --
--- LCD Handling Cautions: You should make sure that you always power off the
--- LCD before turning on the FPGA controller board with the control cable
--- connected.
+--   LCD Handling Cautions: You should make sure that you always power off the
+--   LCD before turning on the FPGA controller board with the control cable
+--   connected.
+--
+--   One useful piece of info for this 320x240x18bpp screen is that the
+--   largest amount of image data it can support with all color bits used
+--   is 1,382,400 bits = 172,800 bytes.  The Virtex-II Pro has enough BRAM
+--   space to support 306KB = 313,344 bytes.  So you could not possible
+--   fill up the BRAM with a single image.
+--    
+--   NOTE! You can EASILY mistake success for failure when viewing a test
+--   image because the resolution of this LCD is soooooo low.  Be sure to look
+--   VERY carefully at the test image before you assume your algorithms are
+--   incorrect!
+--
+--   Important Terms:
+--   1 Pixel = 1 [RGB] element on the screen
+--   BPP = Bits/Pixel = "Color Depth" = "Bit Depth"
+--   BPP/3colors_per_pixel = #BPC = #Bits Per Color
+--   2 color = 1 bpp
+--   16 color = 4 bpp
+--   256 color = 8 bpp
+--   262,144 color = 18 bpp = 6 bpc = this is the same as the lq057q3dc02
+--   16.7 million color (True Color) = 24 bpp
+--   A bitmap file that has anything lower than true color stores it's image
+--   data as look-up locations to a color pallete.  The color pallete is
+--   referenced from the Windows system the bitmap is being viewed on.  Remember,
+--   "bitmap" is a Microsoft file format!
 --
 -- Structure:
 --   - xupv2p.ucf
@@ -77,56 +103,63 @@ USE work.components.ALL;
 --////////////////////--
 ENTITY lq057q3dc02 IS
 
+  -----------------------------------------------------------------
+  -- Generic Descriptions:
+  --
+  -- C_BIT_DEPTH                 -- Bit depth of this LCD
+  --
+  -- Video Controller (pass thru)
+  --  C_RL_STATUS         -- Value to use for the RL port
+  --  C_UD_STATUS         -- Value to use for the UD port
+  --  C_VQ_STATUS         -- Value to use for the VQ port
+  --
+  -- VSYNCx Controller (pass thru)
+  --  C_VSYNC_TV          -- VSYNCx cycle time (in lines)
+  --  C_VSYNC_TVP         -- VSYNCx pulse width (in lines)
+  --  C_VSYNC_TVS         -- VSYNCx start position (in lines)  - We can't start
+  --                      -- sending data until at least 7 lines have passed
+  --                      -- (i.e. start sending data on the 8th line).
+  --
+  -- HSYNCx Controller (pass thru)
+  --  C_HSYNC_TH          -- HSYNCx cycle time (in clocks)
+  --  C_HSYNC_THP         -- HSYNCx pulse width (in clocks) (maximum pulse width is
+  --                      -- best b/c it will conserver the most power)
+  --
+  -- ENAB Controller (pass thru)
+  --  C_ENAB_TEP          -- ENAB pulse width (in clocks)
+  --  C_ENAB_THE          -- HSYNCx-ENAB phase difference (in clocks)
+  --
+  -- Image Generator (pass thru)
+  -- Change these when changing the image
+  -- Also, cleanup all project files, and delete all auto-generated
+  -- image_gen_bram files.
+  --  C_BRAM_ADDR_WIDTH   -- address width required to access all bytes in
+  --                      -- BRAM image (e.g. a full screen image of 320x240
+  --                      -- pixels would require an address width of 17)
+  --  C_IMAGE_WIDTH       -- image width (in pixels)
+  --  C_IMAGE_HEIGHT      -- image height (in pixels)
+  -----------------------------------------------------------------
   GENERIC (
   
-    --One useful piece of info for this 320x240x18bpp screen is that the
-    --largest amount of image data it can support with all color bits used
-    --is 1,382,400 bits = 172,800 bytes.  The Virtex-II Pro has enough BRAM
-    --space to support 306KB = 313,344 bytes.  So you could not possible
-    --fill up the BRAM with a single image.
-    
-    --NOTE! You can EASILY mistake success for failure when viewing a test
-    --image because the resolution of this LCD is soooooo low.  Be sure to look
-    --VERY carefully at the test image before you assume your algorithms are
-    --incorrect!
-  
-    --Video Controller (pass thru)
+    C_BIT_DEPTH : POSITIVE := 18;
+
     C_RL_STATUS : STD_LOGIC := '0';
     C_UD_STATUS : STD_LOGIC := '1';
-    C_VQ_STATUS : STD_LOGIC := '0';  --This LCD supports QVGA (320x240) mode only!
+    C_VQ_STATUS : STD_LOGIC := '0';
     
-    --Important Terms:
-    --1 Pixel = 1 [RGB] element on the screen
-    --BPP = Bits/Pixel = "Color Depth" = "Bit Depth"
-    --BPP/3colors_per_pixel = #BPC = #Bits Per Color
-    --2 color = 1 bpp
-    --16 color = 4 bpp
-    --256 color = 8 bpp
-    --262,144 color = 18 bpp = 6 bpc = this is what the lq057q3dc02 is capable of
-    --16.7 million color (True Color) = 24 bpp
-    --A bitmap file that has anything lower than true color stores it's image data as look-up locations
-    --to a color pallete.  The color pallete is referenced from the Windows system the bitmap is being viewed on.  Remember, Bitmap if a Microsoft file format!
-    C_BIT_DEPTH : POSITIVE := 18; --2**(18 bits/pixel) = 262,144 possible colors
+    C_VSYNC_TV  : POSITIVE := 255;
+    C_VSYNC_TVP : POSITIVE := 3;
+    C_VSYNC_TVS : POSITIVE := 7;  
     
-    --VSYNCx Controller (pass thru)
-    --MIGHT want to make the TV vector one bit larger in case the ser want to allow for larger time than 255 (the actual time spec can be much larger)
-    C_VSYNC_TV  : POSITIVE := 255; -- VSYNC cycle time (lines)
-    C_VSYNC_TVP : POSITIVE := 3;   -- VSYNCx pulse width (lines)
-    C_VSYNC_TVS : POSITIVE := 7;   -- VSYNCx start position - can NOT start sending data until after 7 lines have passed (i.e. start sending data on the 8th line (i.e exactly THE time the 8th HSYNCx pulse))
+    C_HSYNC_TH  : POSITIVE := 400;
+    C_HSYNC_THP : POSITIVE := 10;
     
-    --HSYNCx Controller (pass thru)
-    C_HSYNC_TH  : POSITIVE := 400; -- HSYNC cycle time (clocks)
-    C_HSYNC_THP : POSITIVE := 10;  -- HSYNCx pulse width (clocks)  --would rather have MAX to conserve power (checked as accurate number of cycles in sim, but not on LA)
+    C_ENAB_TEP  : POSITIVE := 320;
+    C_ENAB_THE  : POSITIVE := 8;
     
-    --ENAB Controller (pass thru)    
-    C_ENAB_TEP  : POSITIVE := 320; -- ENAB Pulse Width (clocks)
-    C_ENAB_THE  : POSITIVE := 8;  -- HSYNCx-ENAB Phase Difference (clocks)
-    
-    --Change these when changing the image
-    --Also, cleanup all project files, and delete all auto-generated image_gen_bram files.
-    C_BRAM_ADDR_WIDTH  : POSITIVE := 17;  -- required address width for full_screen image of 320x240 pixles
-    C_IMAGE_WIDTH      : POSITIVE := 320; -- in pixels
-    C_IMAGE_HEIGHT     : POSITIVE := 240  -- in pixels
+    C_BRAM_ADDR_WIDTH  : POSITIVE := 17;  
+    C_IMAGE_WIDTH      : POSITIVE := 320;
+    C_IMAGE_HEIGHT     : POSITIVE := 240
 
   );
 
@@ -183,7 +216,7 @@ ARCHITECTURE lq057q3dc02_arch OF lq057q3dc02 IS
   signal CLK_LCD_wire : std_logic;
   signal HSYNCx_wire  : std_logic;
   signal VSYNCx_wire  : std_logic;
-  signal LINE_NUM_wire : std_logic_vector(8-1 downto 0);
+  signal LINE_NUM_wire : std_logic_vector(9-1 downto 0);
   signal CLK_LCD_CYC_NUM_wire : std_logic_vector(9-1 downto 0);
   
 begin
@@ -194,7 +227,7 @@ begin
   -- LQ057Q3DC02 Datasheet Timing Parameter Checks
   --TODO: is a check for C_BIT_DEPTH needed?  If colors, will just be truncated then that would be kewl.  Too high might want to be checked in any case as the colors will not display exactly the same on the LCD.
   ASSERT C_VQ_STATUS = '0'
-  REPORT "ERROR - lq057q3dc02: Invalid value for generic C_VQ_STATUS (must be '0', lq057q3dc02 only supports QVGA)"
+  REPORT "ERROR - lq057q3dc02: Invalid value for generic C_VQ_STATUS (must be '0', lq057q3dc02 only supports QVGA (320x240) mode)"
   SEVERITY FAILURE;
   
   ASSERT C_VSYNC_TV >= 251 and C_VSYNC_TV <= 280

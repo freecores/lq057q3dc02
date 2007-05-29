@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: video_controller.vhd,v 1.2 2007-05-29 08:13:57 jwdonal Exp $
+-- $Id: video_controller.vhd,v 1.3 2007-05-29 09:16:48 jwdonal Exp $
 --
 -- Description:
 --  This file instantiates the components which control HSYNCx, VSYNCx, ENAB,
@@ -82,7 +82,6 @@ ENTITY video_controller IS
     C_UD_STATUS,
     C_VQ_STATUS : STD_LOGIC;
   
-    
     --VSYNC Controller (pass thru)
     C_VSYNC_TV,
     C_VSYNC_TVP,
@@ -101,9 +100,9 @@ ENTITY video_controller IS
     RSTx,
     CLK_LCD : IN std_logic;
     
-    LINE_NUM : OUT std_logic_vector(7 downto 0);
+    LINE_NUM : OUT std_logic_vector(9-1 downto 0);
     
-    CLK_LCD_CYC_NUM : OUT std_logic_vector(8 downto 0);
+    CLK_LCD_CYC_NUM : OUT std_logic_vector(9-1 downto 0);
     
     HSYNCx,
     VSYNCx,
@@ -124,8 +123,8 @@ ARCHITECTURE video_controller_arch OF video_controller IS
   --Connecting wires between components
   signal HSYNCx_wire : std_logic;
   signal VSYNCx_wire : std_logic;
-  signal LINE_NUM_wire : std_logic_vector(7 downto 0);
-  signal CLK_LCD_CYC_NUM_wire : std_logic_vector(8 downto 0);
+  signal LINE_NUM_wire : std_logic_vector(9-1 downto 0);
+  signal CLK_LCD_CYC_NUM_wire : std_logic_vector(9-1 downto 0);
 
 begin
 

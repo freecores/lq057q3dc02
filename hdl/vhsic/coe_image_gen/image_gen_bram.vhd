@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: image_gen_bram.vhd,v 1.2 2007-05-29 08:13:57 jwdonal Exp $
+-- $Id: image_gen_bram.vhd,v 1.3 2007-05-29 09:16:48 jwdonal Exp $
 --
 -- Description: This file controls the BRAM components for each color.
 --
@@ -92,9 +92,9 @@ ENTITY image_gen_bram IS
     RSTx,
     CLK_LCD : IN std_logic;
 
-    LINE_NUM : IN std_logic_vector(7 downto 0);
+    LINE_NUM : IN std_logic_vector(9-1 downto 0);
     
-    CLK_LCD_CYC_NUM : IN std_logic_vector(8 downto 0);
+    CLK_LCD_CYC_NUM : IN std_logic_vector(9-1 downto 0);
 
     R,
     G,

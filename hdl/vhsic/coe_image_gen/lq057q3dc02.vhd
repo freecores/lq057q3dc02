@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: lq057q3dc02.vhd,v 1.4 2007-05-29 07:57:57 jwdonal Exp $
+-- $Id: lq057q3dc02.vhd,v 1.5 2007-05-29 08:13:57 jwdonal Exp $
 --
 -- Description:
 --   Top level file for the lq057q3dc02 pcore.
@@ -30,6 +30,7 @@
 -- Structure:
 --   - xupv2p.ucf
 --   - components.vhd
+--   - lq057q3dc02_tb.vhd
 --   - lq057q3dc02.vhd
 --     - dcm_sys_to_lcd.xaw
 --     - video_controller.vhd

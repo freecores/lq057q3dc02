@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: vsyncx_control.vhd,v 1.1 2007-05-25 11:20:02 jwdonal Exp $
+-- $Id: vsyncx_control.vhd,v 1.2 2007-05-29 08:13:57 jwdonal Exp $
 --
 -- Description:
 --  This file controls VSYNCx.  VSYNCx is dependent upon the number of HSYNCx
@@ -44,6 +44,7 @@
 -- Structure:
 --   - xupv2p.ucf
 --   - components.vhd
+--   - lq057q3dc02_tb.vhd
 --   - lq057q3dc02.vhd
 --     - dcm_sys_to_lcd.xaw
 --     - video_controller.vhd

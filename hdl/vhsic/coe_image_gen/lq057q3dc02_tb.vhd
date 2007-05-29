@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: lq057q3dc02_tb.vhd,v 1.1 2007-05-25 11:20:02 jwdonal Exp $
+-- $Id: lq057q3dc02_tb.vhd,v 1.2 2007-05-29 08:13:57 jwdonal Exp $
 --
 -- Description:
 --   Test bench to verify lq057q3dc02 pcore.
@@ -26,6 +26,7 @@
 -- Structure:
 --   - xupv2p.ucf
 --   - components.vhd
+--   - lq057q3dc02_tb.vhd
 --   - lq057q3dc02.vhd
 --     - dcm_sys_to_lcd.xaw
 --     - video_controller.vhd

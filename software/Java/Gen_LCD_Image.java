@@ -18,7 +18,7 @@
 //
 //----------------------------------------------------------------------------
 //
-//  $Id: Gen_LCD_Image.java,v 1.1 2007-05-25 11:20:18 jwdonal Exp $
+//  $Id: Gen_LCD_Image.java,v 1.2 2007-05-29 04:15:10 jwdonal Exp $
 //
 //  Description: This program parses the RGB COE files in binary, decimal
 //  or hex format and displays what the image should look like on the LCD
@@ -71,7 +71,6 @@ public class Gen_LCD_Image {
   private int currByteIntBlue;
 
   private String hdrFileStr;
-  private String temp;
 
 
   /**
@@ -96,9 +95,6 @@ public class Gen_LCD_Image {
     currByteIntBlue = 0;
 
     hdrFileStr = "uninitialized";
-
-    temp = "unintialized";
-
 
   }
 
@@ -207,6 +203,8 @@ public class Gen_LCD_Image {
 
   
   public void getRadixValues() throws IOException {
+
+    String temp = "unintialized";
 
     for( int fileNum = 0; fileNum < NUM_COE_FILES; fileNum++ ) {
 

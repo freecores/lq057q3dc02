@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: lq057q3dc02.vhd,v 1.2 2007-05-25 11:27:37 jwdonal Exp $
+-- $Id: lq057q3dc02.vhd,v 1.3 2007-05-29 07:29:41 jwdonal Exp $
 --
 -- Description:
 --   Top level file for the lq057q3dc02 pcore.
@@ -129,6 +129,26 @@ ENTITY lq057q3dc02 IS
 
   );
 
+  -----------------------------------------------------------------
+  -- Port Descriptions:
+  -- INPUTS
+  --   --Clocks/Resets--
+  --   RSTx                     -- System Reset
+  --   CLK100_PAD               -- 100MHz Input Clock from On-board XTAL
+  --
+  -- OUTPUTS
+  --   --LCD Control Signals--
+  --   CLK_LCD                  -- 6.25MHz LCD Clock
+  --   HSYNCx                   -- Horizontal Sync Strobe
+  --   VSYNCx                   -- Vertical Sync Strobe
+  --   ENAB                     -- Enable Signal for LCD's shift registers
+  --   RL                       -- LCD Image Right/Left Orientation
+  --   UD                       -- LCD Image Up/Down Orientation
+  --   VQ                       -- VGA (640x480) or QVGA (320x240) mode
+  --
+  --   --LCD Data Signals--
+  --   R,G,B                    -- Red/Green/Blue Color Data
+  -----------------------------------------------------------------
   PORT (
 
     -- <PORT_NAME> : <MODE> <DATA_TYPE>;

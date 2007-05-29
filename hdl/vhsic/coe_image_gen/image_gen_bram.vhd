@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: image_gen_bram.vhd,v 1.3 2007-05-29 09:16:48 jwdonal Exp $
+-- $Id: image_gen_bram.vhd,v 1.4 2007-05-29 19:45:13 jwdonal Exp $
 --
 -- Description: This file controls the BRAM components for each color.
 --
@@ -78,6 +78,9 @@ ENTITY image_gen_bram IS
     C_BIT_DEPTH,
     
     C_VSYNC_TVS,
+    C_LINE_NUM_WIDTH,
+    
+    C_CLK_LCD_CYC_NUM_WIDTH,
     
     C_ENAB_TEP,
     C_ENAB_THE,
@@ -92,9 +95,9 @@ ENTITY image_gen_bram IS
     RSTx,
     CLK_LCD : IN std_logic;
 
-    LINE_NUM : IN std_logic_vector(9-1 downto 0);
+    LINE_NUM : IN std_logic_vector(C_LINE_NUM_WIDTH-1 downto 0);
     
-    CLK_LCD_CYC_NUM : IN std_logic_vector(9-1 downto 0);
+    CLK_LCD_CYC_NUM : IN std_logic_vector(C_CLK_LCD_CYC_NUM_WIDTH-1 downto 0);
 
     R,
     G,
@@ -111,8 +114,8 @@ ARCHITECTURE image_gen_bram_arch OF image_gen_bram IS
    constant C_NUM_LCD_PIXELS : positive := 320;
    
    --Connecting signal wires between components
-   signal SINIT_wire : std_logic;   
-   signal ADDR_wire  : std_logic_vector(C_BRAM_ADDR_WIDTH-1 downto 0);
+   signal SINIT_wire : std_logic := '0';
+   signal ADDR_wire  : std_logic_vector(C_BRAM_ADDR_WIDTH-1 downto 0) := (others => '0');
 
 begin
 

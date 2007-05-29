@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: vsyncx_control.vhd,v 1.3 2007-05-29 09:16:48 jwdonal Exp $
+-- $Id: vsyncx_control.vhd,v 1.4 2007-05-29 19:45:13 jwdonal Exp $
 --
 -- Description:
 --  This file controls VSYNCx.  VSYNCx is dependent upon the number of HSYNCx
@@ -101,9 +101,8 @@ ENTITY vsyncx_control IS
   generic (
   
     C_VSYNC_TV,
-    C_VSYNC_TVP : POSITIVE;
-
-    C_LINE_NUM_WIDTH : POSITIVE := 9
+    C_VSYNC_TVP,
+    C_LINE_NUM_WIDTH : POSITIVE
 
   );
   

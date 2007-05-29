@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: hsyncx_control.vhd,v 1.2 2007-05-29 08:13:57 jwdonal Exp $
+-- $Id: hsyncx_control.vhd,v 1.3 2007-05-29 19:45:13 jwdonal Exp $
 --
 -- Description:
 --  This file controls the HSYNCx signal.  The HSYNCx state machine is
@@ -86,7 +86,8 @@ ENTITY hsyncx_control IS
   
   generic (
     C_HSYNC_TH,
-    C_HSYNC_THP : POSITIVE
+    C_HSYNC_THP,
+    C_NUM_CLKS_WIDTH : POSITIVE
   );
   
   port (
@@ -103,16 +104,14 @@ END ENTITY hsyncx_control;
 --////////////////////////--
 ARCHITECTURE hsyncx_control_arch OF hsyncx_control IS
   
-  -- Number of clock cycles that have occurred
-  -- (need at least 9 bits to hold value of max TH value of 450)
-  signal num_hsyncx_clocks_reg : std_logic_vector(8 downto 0) := "000000000";
+  signal num_hsyncx_clks_reg : std_logic_vector(C_NUM_CLKS_WIDTH-1 downto 0) := (others => '0');
     
 begin
 
   ------------------------------------------------------------------
   --  Process Description:
   --    This process enables or disables the HSYNCx port depending
-  --    upon the number of clocks that have passed (num_hsyncx_clocks_reg)
+  --    upon the number of clocks that have passed (num_hsyncx_clks_reg)
   --    relative to C_HSYNC_THP.
   --  
   --  Inputs:
@@ -134,7 +133,7 @@ begin
     
     elsif( CLK_LCD'event and CLK_LCD = '1' ) then
     
-      if( num_hsyncx_clocks_reg < C_HSYNC_THP ) then
+      if( num_hsyncx_clks_reg < C_HSYNC_THP ) then
       
         HSYNCx <= '0';
       
@@ -151,7 +150,7 @@ begin
 
   ------------------------------------------------------------------
   --  Process Description:
-  --    This process controls the num_hsyncx_clocks_reg counter
+  --    This process controls the num_hsyncx_clks_reg counter
   --    and resets it when it has reached the defined C_HSYNC_TH
   --    parameter.
   --  
@@ -160,7 +159,7 @@ begin
   --    CLK_LCD
   --  
   --  Outputs:
-  --    num_hsyncx_clocks_reg
+  --    num_hsyncx_clks_reg
   --
   --  Notes:
   --    N/A
@@ -170,17 +169,17 @@ begin
 
     if( RSTx = '0' ) then
     
-      num_hsyncx_clocks_reg <= (others => '0');
+      num_hsyncx_clks_reg <= (others => '0');
     
     elsif( CLK_LCD'event and CLK_LCD = '1' ) then
       
-      if( num_hsyncx_clocks_reg = C_HSYNC_TH - 1 ) then -- 0 to (TH - 1) = TH clocks!
+      if( num_hsyncx_clks_reg = C_HSYNC_TH - 1 ) then -- 0 to (TH - 1) = TH clocks!
       
-        num_hsyncx_clocks_reg <= (others => '0'); -- a full HSYNC cycle has completed.  START OVER!
+        num_hsyncx_clks_reg <= (others => '0'); -- a full HSYNC cycle has completed.  START OVER!
       
       else
       
-        num_hsyncx_clocks_reg <= num_hsyncx_clocks_reg + 1;  -- keep counting until we have reached a full HSYNC cycle
+        num_hsyncx_clks_reg <= num_hsyncx_clks_reg + 1;  -- keep counting until we have reached a full HSYNC cycle
       
       end if;
 

@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: video_controller.vhd,v 1.3 2007-05-29 09:16:48 jwdonal Exp $
+-- $Id: video_controller.vhd,v 1.4 2007-05-29 19:45:13 jwdonal Exp $
 --
 -- Description:
 --  This file instantiates the components which control HSYNCx, VSYNCx, ENAB,
@@ -86,10 +86,15 @@ ENTITY video_controller IS
     C_VSYNC_TV,
     C_VSYNC_TVP,
     C_VSYNC_TVS,
+    C_LINE_NUM_WIDTH,
     
     --HSYNCx Controller (pass thru)
     C_HSYNC_TH,
     C_HSYNC_THP,
+    C_NUM_CLKS_WIDTH,
+    
+    --CLK_LCD Cycle Counter (pass thru)
+    C_CLK_LCD_CYC_NUM_WIDTH,
     
     --ENAB Controller (pass thru)
     C_ENAB_TEP,
@@ -100,17 +105,16 @@ ENTITY video_controller IS
     RSTx,
     CLK_LCD : IN std_logic;
     
-    LINE_NUM : OUT std_logic_vector(9-1 downto 0);
+    LINE_NUM : OUT std_logic_vector(C_LINE_NUM_WIDTH-1 downto 0);
     
-    CLK_LCD_CYC_NUM : OUT std_logic_vector(9-1 downto 0);
+    CLK_LCD_CYC_NUM : OUT std_logic_vector(C_CLK_LCD_CYC_NUM_WIDTH-1 downto 0);
     
     HSYNCx,
     VSYNCx,
     ENAB,
-    RL,   -- never changed in this code
-    UD,   -- never changed in this code
-    VQ    --:= '0'; -- alwasys 0 b/c VGA mode is not possible on this LCD! (QVGA only!)
-       : OUT  std_logic
+    RL,
+    UD,
+    VQ : OUT  std_logic
   );
   
 END ENTITY video_controller;
@@ -121,10 +125,10 @@ END ENTITY video_controller;
 ARCHITECTURE video_controller_arch OF video_controller IS
 
   --Connecting wires between components
-  signal HSYNCx_wire : std_logic;
-  signal VSYNCx_wire : std_logic;
-  signal LINE_NUM_wire : std_logic_vector(9-1 downto 0);
-  signal CLK_LCD_CYC_NUM_wire : std_logic_vector(9-1 downto 0);
+  signal HSYNCx_wire   : std_logic := '1';
+  signal VSYNCx_wire   : std_logic := '1';
+  signal LINE_NUM_wire : std_logic_vector(C_LINE_NUM_WIDTH-1 downto 0) := (others => '0');
+  signal CLK_LCD_CYC_NUM_wire : std_logic_vector(C_CLK_LCD_CYC_NUM_WIDTH-1 downto 0) := (others => '0');
 
 begin
 
@@ -149,7 +153,8 @@ begin
   HSYNCx_C : hsyncx_control
   generic map (
     C_HSYNC_TH => C_HSYNC_TH,
-    C_HSYNC_THP => C_HSYNC_THP
+    C_HSYNC_THP => C_HSYNC_THP,
+    C_NUM_CLKS_WIDTH => C_NUM_CLKS_WIDTH
   )
   port map (
     RSTx => RSTx,
@@ -166,7 +171,8 @@ begin
   VSYNCx_C : vsyncx_control
   generic map (
     C_VSYNC_TV => C_VSYNC_TV,
-    C_VSYNC_TVP => C_VSYNC_TVP
+    C_VSYNC_TVP => C_VSYNC_TVP,
+    C_LINE_NUM_WIDTH => C_LINE_NUM_WIDTH
   )
   port map (
     RSTx => RSTx,
@@ -183,7 +189,11 @@ begin
   ---------------------------
   CLK_LCD_CYCLE_Cntr : clk_lcd_cyc_cntr
   GENERIC MAP (
-    C_VSYNC_TVS => C_VSYNC_TVS,    
+    C_VSYNC_TVS => C_VSYNC_TVS,
+    C_LINE_NUM_WIDTH => C_LINE_NUM_WIDTH,
+    
+    C_CLK_LCD_CYC_NUM_WIDTH => C_CLK_LCD_CYC_NUM_WIDTH,
+    
     C_ENAB_TEP => C_ENAB_TEP,
     C_ENAB_THE => C_ENAB_THE
   )
@@ -203,7 +213,10 @@ begin
   ----------------------
   ENAB_C : enab_control
   generic map (  
-    C_VSYNC_TVS => C_VSYNC_TVS,    
+    C_VSYNC_TVS => C_VSYNC_TVS,
+    
+    C_CLK_LCD_CYC_NUM_WIDTH => C_CLK_LCD_CYC_NUM_WIDTH,
+    
     C_ENAB_TEP => C_ENAB_TEP,
     C_ENAB_THE => C_ENAB_THE
   )

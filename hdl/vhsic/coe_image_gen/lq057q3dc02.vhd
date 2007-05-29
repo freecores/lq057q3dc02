@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: lq057q3dc02.vhd,v 1.6 2007-05-29 09:16:48 jwdonal Exp $
+-- $Id: lq057q3dc02.vhd,v 1.7 2007-05-29 19:45:13 jwdonal Exp $
 --
 -- Description:
 --   Top level file for the lq057q3dc02 pcore.  The lq057q3dc02 supports QVGA
@@ -108,28 +108,42 @@ ENTITY lq057q3dc02 IS
   --
   -- C_BIT_DEPTH                 -- Bit depth of this LCD
   --
-  -- Video Controller (pass thru)
+  -- Video Controller (passed thru from top-level to component)
   --  C_RL_STATUS         -- Value to use for the RL port
   --  C_UD_STATUS         -- Value to use for the UD port
   --  C_VQ_STATUS         -- Value to use for the VQ port
   --
-  -- VSYNCx Controller (pass thru)
+  -- VSYNCx Controller (passed thru from top-level to component)
   --  C_VSYNC_TV          -- VSYNCx cycle time (in lines)
   --  C_VSYNC_TVP         -- VSYNCx pulse width (in lines)
   --  C_VSYNC_TVS         -- VSYNCx start position (in lines)  - We can't start
   --                      -- sending data until at least 7 lines have passed
   --                      -- (i.e. start sending data on the 8th line).
+  --  C_LINE_NUM_WIDTH    -- Width of register that stores current line number
+  --                      -- (need at least 9 bits to hold maximum TV
+  --                      -- timespec value of 280)
   --
-  -- HSYNCx Controller (pass thru)
+  -- HSYNCx Controller (passed thru from top-level to component)
   --  C_HSYNC_TH          -- HSYNCx cycle time (in clocks)
   --  C_HSYNC_THP         -- HSYNCx pulse width (in clocks) (maximum pulse width is
   --                      -- best b/c it will conserver the most power)
+  --  C_NUM_CLKS_WIDTH    -- Width of register that stores current number of
+  --                      -- clock cycles that have occurred.
+  --                      -- (need at least 9 bits to hold maximum TH
+  --                      -- timespec value of 450)
   --
-  -- ENAB Controller (pass thru)
+  -- CLK_LCD Cycle Counter (passed thru from top-level to component)
+  --  C_CLK_LCD_CYC_NUM_WIDTH -- Width of register that stores current number
+  --                          -- of clock cycles that have occurred.
+  --                          -- (need at least 9 bits to hold maximum timespec
+  --                          -- value of full screen image width (320 clocks)
+  --                          -- + maximum timespec value of C_ENAB_THE
+  --                          -- ([C_ENAB_TH_max - 340] clocks) = 430)
+  -- ENAB Controller (passed thru from top-level to component)
   --  C_ENAB_TEP          -- ENAB pulse width (in clocks)
   --  C_ENAB_THE          -- HSYNCx-ENAB phase difference (in clocks)
   --
-  -- Image Generator (pass thru)
+  -- Image Generator (passed thru from top-level to component)
   -- Change these when changing the image
   -- Also, cleanup all project files, and delete all auto-generated
   -- image_gen_bram files.
@@ -143,23 +157,27 @@ ENTITY lq057q3dc02 IS
   
     C_BIT_DEPTH : POSITIVE := 18;
 
-    C_RL_STATUS : STD_LOGIC := '0';
-    C_UD_STATUS : STD_LOGIC := '1';
-    C_VQ_STATUS : STD_LOGIC := '0';
+    C_RL_STATUS       : STD_LOGIC := '0';
+    C_UD_STATUS       : STD_LOGIC := '1';
+    C_VQ_STATUS       : STD_LOGIC := '0';
     
-    C_VSYNC_TV  : POSITIVE := 255;
-    C_VSYNC_TVP : POSITIVE := 3;
-    C_VSYNC_TVS : POSITIVE := 7;  
+    C_VSYNC_TV        : POSITIVE := 255;
+    C_VSYNC_TVP       : POSITIVE := 3;
+    C_VSYNC_TVS       : POSITIVE := 7;
+    C_LINE_NUM_WIDTH  : POSITIVE := 9;
     
-    C_HSYNC_TH  : POSITIVE := 400;
-    C_HSYNC_THP : POSITIVE := 10;
+    C_HSYNC_TH        : POSITIVE := 400;
+    C_HSYNC_THP       : POSITIVE := 10;
+    C_NUM_CLKS_WIDTH  : POSITIVE := 9;
     
-    C_ENAB_TEP  : POSITIVE := 320;
-    C_ENAB_THE  : POSITIVE := 8;
+    C_CLK_LCD_CYC_NUM_WIDTH : POSITIVE := 9;
     
-    C_BRAM_ADDR_WIDTH  : POSITIVE := 17;  
-    C_IMAGE_WIDTH      : POSITIVE := 320;
-    C_IMAGE_HEIGHT     : POSITIVE := 240
+    C_ENAB_TEP        : POSITIVE := 320;
+    C_ENAB_THE        : POSITIVE := 8;
+    
+    C_BRAM_ADDR_WIDTH : POSITIVE := 17;  
+    C_IMAGE_WIDTH     : POSITIVE := 320;
+    C_IMAGE_HEIGHT    : POSITIVE := 240
 
   );
 
@@ -213,11 +231,11 @@ END ENTITY lq057q3dc02;
 ARCHITECTURE lq057q3dc02_arch OF lq057q3dc02 IS
 
   --Connecting wires to carry signals b/w components
-  signal CLK_LCD_wire : std_logic;
-  signal HSYNCx_wire  : std_logic;
-  signal VSYNCx_wire  : std_logic;
-  signal LINE_NUM_wire : std_logic_vector(9-1 downto 0);
-  signal CLK_LCD_CYC_NUM_wire : std_logic_vector(9-1 downto 0);
+  signal CLK_LCD_wire  : std_logic := '0';
+  signal HSYNCx_wire   : std_logic := '1';
+  signal VSYNCx_wire   : std_logic := '1';
+  signal LINE_NUM_wire : std_logic_vector(C_LINE_NUM_WIDTH-1 downto 0) := (others => '0');
+  signal CLK_LCD_CYC_NUM_wire : std_logic_vector(C_CLK_LCD_CYC_NUM_WIDTH-1 downto 0) := (others => '0');
   
 begin
 
@@ -242,12 +260,24 @@ begin
   REPORT "ERROR - lq057q3dc02: Invalid value for generic C_VSYNC_TVS (must be 7)"
   SEVERITY FAILURE;
 
+  ASSERT C_LINE_NUM_WIDTH = 9
+  REPORT "ERROR - lq057q3dc02: Invalid value for generic C_LINE_NUM_WIDTH (must be 9 to hold maximum TV timespec value of 280"
+  SEVERITY FAILURE;
+  
   ASSERT C_HSYNC_TH >= 360 and C_HSYNC_TH <= 450
   REPORT "ERROR - lq057q3dc02: Invalid value for generic C_HSYNC_TH (must be >= 360 and <= 450)"
   SEVERITY FAILURE;
   
   ASSERT C_HSYNC_THP >= 2 and C_HSYNC_THP <= 200
   REPORT "ERROR - lq057q3dc02: Invalid value for generic C_HSYNC_THP (must be >= 2 and <= 200)"
+  SEVERITY FAILURE;
+  
+  ASSERT C_NUM_CLKS_WIDTH = 9
+  REPORT "ERROR - lq057q3dc02: Invalid value for generic C_NUM_CLKS_WIDTH (must be 9 to hold maximum TH timespec value of 450"
+  SEVERITY FAILURE;
+  
+  ASSERT C_CLK_LCD_CYC_NUM_WIDTH = 9
+  REPORT "ERROR - lq057q3dc02: Invalid value for generic C_CLK_LCD_CYC_NUM_WIDTH (must be 9 to hold maximum TH timespec value of 430"
   SEVERITY FAILURE;
   
   ASSERT C_ENAB_TEP >= 2 and C_ENAB_TEP <= (C_HSYNC_TH - 10)
@@ -296,10 +326,15 @@ begin
     C_VSYNC_TV => C_VSYNC_TV,
     C_VSYNC_TVP => C_VSYNC_TVP,
     C_VSYNC_TVS => C_VSYNC_TVS,
+    C_LINE_NUM_WIDTH => C_LINE_NUM_WIDTH,
     
     --HSYNCx Controller
     C_HSYNC_TH => C_HSYNC_TH,
     C_HSYNC_THP => C_HSYNC_THP,
+    C_NUM_CLKS_WIDTH => C_NUM_CLKS_WIDTH,
+    
+    --CLK_LCD Cycle Counter
+    C_CLK_LCD_CYC_NUM_WIDTH => C_CLK_LCD_CYC_NUM_WIDTH,
     
     --ENAB Controller
     C_ENAB_TEP => C_ENAB_TEP,
@@ -323,8 +358,13 @@ begin
 
   IMAGE : image_gen_bram
   GENERIC MAP (
-    C_BIT_DEPTH => C_BIT_DEPTH,    
-    C_VSYNC_TVS => C_VSYNC_TVS,    
+    C_BIT_DEPTH => C_BIT_DEPTH,
+    
+    C_VSYNC_TVS => C_VSYNC_TVS,
+    C_LINE_NUM_WIDTH => C_LINE_NUM_WIDTH,
+    
+    C_CLK_LCD_CYC_NUM_WIDTH => C_CLK_LCD_CYC_NUM_WIDTH,
+    
     C_ENAB_TEP => C_ENAB_TEP,
     C_ENAB_THE => C_ENAB_THE,
     

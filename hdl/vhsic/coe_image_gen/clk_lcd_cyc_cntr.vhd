@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: clk_lcd_cyc_cntr.vhd,v 1.3 2007-05-29 09:16:48 jwdonal Exp $
+-- $Id: clk_lcd_cyc_cntr.vhd,v 1.4 2007-05-29 19:45:13 jwdonal Exp $
 --
 -- Description:
 --   Counts the number of CLK_LCD cycles that have occured after C_VSYNC_TVS
@@ -80,6 +80,9 @@ ENTITY clk_lcd_cyc_cntr IS
 
   generic (
     C_VSYNC_TVS,
+    C_LINE_NUM_WIDTH,
+    
+    C_CLK_LCD_CYC_NUM_WIDTH,
 
     C_ENAB_TEP,
     C_ENAB_THE : POSITIVE
@@ -92,9 +95,9 @@ ENTITY clk_lcd_cyc_cntr IS
     HSYNCx,
     VSYNCx : IN std_logic;
     
-    LINE_NUM : IN std_logic_vector(9-1 downto 0);
+    LINE_NUM : IN std_logic_vector(C_LINE_NUM_WIDTH-1 downto 0);
     
-    CLK_LCD_CYC_NUM : OUT std_logic_vector(9-1 downto 0)
+    CLK_LCD_CYC_NUM : OUT std_logic_vector(C_CLK_LCD_CYC_NUM_WIDTH-1 downto 0)
 
   );
   
@@ -109,10 +112,10 @@ ARCHITECTURE clk_lcd_cyc_cntr_arch OF clk_lcd_cyc_cntr IS
   constant C_NUM_LCD_PIXELS : positive := 320;
   
   --Enables/disables counter for pixel/enab counter process
-  signal clk_cyc_cnt_en_sig : std_logic;
+  signal clk_cyc_cnt_en_sig : std_logic := '0';
   
   --Stores the number of CLK_LCD cycles that have occurred
-  signal clk_cyc_num_reg : std_logic_vector(8 downto 0);
+  signal clk_cyc_num_reg : std_logic_vector(C_CLK_LCD_CYC_NUM_WIDTH-1 downto 0) := (others => '0');
 
   ---------------------------------------------------------------
   -- States for CLK_Cntr_cntrl_*_PROC
@@ -247,9 +250,9 @@ begin
           
         end if;
         
-      when ACTIVE =>  -- Now that ENAB is active we want it to stay active for TEP CLK_LCD cycles (i.e. 320 pixels)
+      when ACTIVE =>  -- Now that ENAB is active we want it to stay active for TEP CLK_LCD cycles
       
-        if( clk_cyc_num_reg = C_ENAB_THE + C_NUM_LCD_PIXELS - 1 ) then -- C_ENAB_THE to C_ENAB_THE + (320 - 1) = 320 clocks!
+        if( clk_cyc_num_reg = C_ENAB_THE + C_NUM_LCD_PIXELS - 1 ) then -- C_ENAB_THE to C_ENAB_THE + (320 - 1) = C_ENAB_TEP clocks!
         
           CLK_Cntr_ns <= INACTIVE_WAIT_1; -- once TEP clocks have passed we disable ENAB!
           

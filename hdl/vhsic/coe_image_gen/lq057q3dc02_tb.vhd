@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: lq057q3dc02_tb.vhd,v 1.2 2007-05-29 08:13:57 jwdonal Exp $
+-- $Id: lq057q3dc02_tb.vhd,v 1.3 2007-05-29 19:45:13 jwdonal Exp $
 --
 -- Description:
 --   Test bench to verify lq057q3dc02 pcore.
@@ -89,7 +89,7 @@ ARCHITECTURE lq057q3dc02_tb_arch OF lq057q3dc02_tb IS
    
       R,
       G,
-      B       : OUT std_logic_vector(5 downto 0)
+      B       : OUT std_logic_vector(6-1 downto 0)
     );
   END COMPONENT;
 
@@ -112,7 +112,7 @@ ARCHITECTURE lq057q3dc02_tb_arch OF lq057q3dc02_tb IS
    signal
      R,
      G,
-     B :  std_logic_vector(5 downto 0) := "UUUUUU";
+     B :  std_logic_vector(6-1 downto 0) := (others => 'U');
 
    signal verifyDone : std_logic := '0';
 

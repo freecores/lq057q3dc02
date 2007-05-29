@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: enab_control.vhd,v 1.2 2007-05-29 08:13:57 jwdonal Exp $
+-- $Id: enab_control.vhd,v 1.3 2007-05-29 19:45:13 jwdonal Exp $
 --
 -- Description:
 --  This file controls ENAB.  This is the hardest state machine of the three.  ENAB
@@ -88,7 +88,7 @@ ENTITY enab_control IS
     RSTx,
     CLK_LCD : IN std_logic;
         
-    CLK_LCD_CYC_NUM : IN std_logic_vector(8 downto 0);
+    CLK_LCD_CYC_NUM : IN std_logic_vector(9-1 downto 0);
     
     ENAB : OUT std_logic
   );

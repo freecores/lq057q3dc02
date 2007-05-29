@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: components.vhd,v 1.3 2007-05-29 09:16:48 jwdonal Exp $
+-- $Id: components.vhd,v 1.4 2007-05-29 19:45:13 jwdonal Exp $
 --
 -- Description:
 --   This is a package that lists all of the components used in the design.
@@ -91,6 +91,9 @@ PACKAGE components IS
   COMPONENT clk_lcd_cyc_cntr is
   GENERIC (
     C_VSYNC_TVS,
+    C_LINE_NUM_WIDTH,
+    
+    C_CLK_LCD_CYC_NUM_WIDTH,
 
     C_ENAB_TEP,
     C_ENAB_THE : POSITIVE
@@ -102,9 +105,9 @@ PACKAGE components IS
     HSYNCx,
     VSYNCx : IN std_logic;
     
-    LINE_NUM : IN std_logic_vector(9-1 downto 0);
+    LINE_NUM : IN std_logic_vector(C_LINE_NUM_WIDTH-1 downto 0);
     
-    CLK_LCD_CYC_NUM : OUT std_logic_vector(9-1 downto 0)
+    CLK_LCD_CYC_NUM : OUT std_logic_vector(C_CLK_LCD_CYC_NUM_WIDTH-1 downto 0)
   );
   END COMPONENT clk_lcd_cyc_cntr;
 
@@ -122,12 +125,17 @@ PACKAGE components IS
     C_VSYNC_TV,
     C_VSYNC_TVP,
     C_VSYNC_TVS,
+    C_LINE_NUM_WIDTH,
     
     --HSYNCx Controller (pass thru)
     C_HSYNC_TH,
     C_HSYNC_THP,
+    C_NUM_CLKS_WIDTH,
+    
+    --CLK_LCD Cycle Counter (pass thru)
+    C_CLK_LCD_CYC_NUM_WIDTH,
 
-    --ENAB Controller
+    --ENAB Controller (pass thru)
     C_ENAB_TEP,
     C_ENAB_THE : POSITIVE
   );
@@ -136,9 +144,9 @@ PACKAGE components IS
     RSTx,
     CLK_LCD : IN  STD_LOGIC;
     
-    LINE_NUM : OUT STD_LOGIC_VECTOR(9-1 downto 0);
+    LINE_NUM : OUT STD_LOGIC_VECTOR(C_LINE_NUM_WIDTH-1 downto 0);
     
-    CLK_LCD_CYC_NUM : OUT STD_LOGIC_VECTOR(9-1 downto 0);
+    CLK_LCD_CYC_NUM : OUT STD_LOGIC_VECTOR(C_CLK_LCD_CYC_NUM_WIDTH-1 downto 0);
     
     HSYNCx,
     VSYNCx,
@@ -156,13 +164,14 @@ PACKAGE components IS
   COMPONENT hsyncx_control is  
   GENERIC (
     C_HSYNC_TH,
-    C_HSYNC_THP : POSITIVE
+    C_HSYNC_THP,
+    C_NUM_CLKS_WIDTH : POSITIVE
   );
   PORT (
     RSTx,
-    CLK_LCD     : IN  STD_LOGIC;
+    CLK_LCD : IN  STD_LOGIC;
     
-    HSYNCx       : OUT STD_LOGIC
+    HSYNCx  : OUT STD_LOGIC
   );
   END COMPONENT hsyncx_control;
 
@@ -173,17 +182,18 @@ PACKAGE components IS
   COMPONENT vsyncx_control is
   GENERIC (
     C_VSYNC_TV,
-    C_VSYNC_TVP : POSITIVE
+    C_VSYNC_TVP,
+    C_LINE_NUM_WIDTH : POSITIVE
   );
   
   PORT (
     RSTx,
     CLK_LCD,
-    HSYNCx     : IN  STD_LOGIC;
+    HSYNCx   : IN  STD_LOGIC;
     
-    LINE_NUM : OUT STD_LOGIC_VECTOR(9-1 downto 0);
+    LINE_NUM : OUT STD_LOGIC_VECTOR(C_LINE_NUM_WIDTH-1 downto 0);
   
-    VSYNCx  : OUT STD_LOGIC
+    VSYNCx   : OUT STD_LOGIC
   );
   END COMPONENT vsyncx_control;
 
@@ -195,6 +205,8 @@ PACKAGE components IS
   GENERIC (
     C_VSYNC_TVS,
     
+    C_CLK_LCD_CYC_NUM_WIDTH,
+    
     C_ENAB_TEP,
     C_ENAB_THE : POSITIVE
   );
@@ -202,7 +214,7 @@ PACKAGE components IS
     RSTx,
     CLK_LCD : IN STD_LOGIC;
     
-    CLK_LCD_CYC_NUM : IN STD_LOGIC_VECTOR(9-1 downto 0);
+    CLK_LCD_CYC_NUM : IN STD_LOGIC_VECTOR(C_CLK_LCD_CYC_NUM_WIDTH-1 downto 0);
     
     ENAB  : OUT STD_LOGIC
   );
@@ -217,6 +229,9 @@ PACKAGE components IS
     C_BIT_DEPTH,
     
     C_VSYNC_TVS,
+    C_LINE_NUM_WIDTH,
+    
+    C_CLK_LCD_CYC_NUM_WIDTH,
     
     C_ENAB_TEP,
     C_ENAB_THE,
@@ -229,9 +244,9 @@ PACKAGE components IS
     RSTx,
     CLK_LCD : IN STD_LOGIC;
     
-    LINE_NUM : IN STD_LOGIC_VECTOR(9-1 downto 0);
+    LINE_NUM : IN STD_LOGIC_VECTOR(C_LINE_NUM_WIDTH-1 downto 0);
     
-    CLK_LCD_CYC_NUM : IN STD_LOGIC_VECTOR(9-1 downto 0);
+    CLK_LCD_CYC_NUM : IN STD_LOGIC_VECTOR(C_CLK_LCD_CYC_NUM_WIDTH-1 downto 0);
     
     R,
     G,

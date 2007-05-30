@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: image_gen_bram.vhd,v 1.4 2007-05-29 19:45:13 jwdonal Exp $
+-- $Id: image_gen_bram.vhd,v 1.5 2007-05-30 05:25:55 jwdonal Exp $
 --
 -- Description: This file controls the BRAM components for each color.
 --
@@ -111,7 +111,7 @@ END ENTITY image_gen_bram;
 --////////////////////////--
 ARCHITECTURE image_gen_bram_arch OF image_gen_bram IS
    
-   constant C_NUM_LCD_PIXELS : positive := 320;
+   constant C_NUM_LCD_PIXELS : positive := 320;  -- number of drawable pixels per line in the LCD
    
    --Connecting signal wires between components
    signal SINIT_wire : std_logic := '0';

@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: clk_lcd_cyc_cntr.vhd,v 1.4 2007-05-29 19:45:13 jwdonal Exp $
+-- $Id: clk_lcd_cyc_cntr.vhd,v 1.5 2007-05-30 05:25:55 jwdonal Exp $
 --
 -- Description:
 --   Counts the number of CLK_LCD cycles that have occured after C_VSYNC_TVS
@@ -108,8 +108,8 @@ END ENTITY clk_lcd_cyc_cntr;
 --////////////////////////--
 ARCHITECTURE clk_lcd_cyc_cntr_arch OF clk_lcd_cyc_cntr IS
 
-  constant C_NUM_LCD_LINES : positive := 240;
-  constant C_NUM_LCD_PIXELS : positive := 320;
+  constant C_NUM_LCD_LINES : positive := 240;  -- number of drawable lines in the LCD
+  constant C_NUM_LCD_PIXELS : positive := 320; -- number of drawable pixels per line in the LCD
   
   --Enables/disables counter for pixel/enab counter process
   signal clk_cyc_cnt_en_sig : std_logic := '0';

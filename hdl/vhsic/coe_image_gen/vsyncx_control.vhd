@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: vsyncx_control.vhd,v 1.4 2007-05-29 19:45:13 jwdonal Exp $
+-- $Id: vsyncx_control.vhd,v 1.5 2007-05-31 19:42:51 jwdonal Exp $
 --
 -- Description:
 --  This file controls VSYNCx.  VSYNCx is dependent upon the number of HSYNCx
@@ -174,7 +174,7 @@ begin
   VSYNCx_Line_Cntr_1_PROC : process( RSTx, CLK_LCD )
   begin
 
-    if( RSTx = '0') then
+    if( RSTx = '0' ) then
     
       Line_Cntr_cs <= READY;
 
@@ -270,7 +270,7 @@ begin
   --  Process Description:
   --    This is finite state machine process 3 of 3 for the VSYNCx
   --    signal controller.  This process only controls the change of
-  --    of output values cased on the current state.
+  --    of output values based on the current state.
   --  
   --  Inputs:
   --    Line_Cntr_cs

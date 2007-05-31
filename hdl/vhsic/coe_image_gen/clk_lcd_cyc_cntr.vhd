@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: clk_lcd_cyc_cntr.vhd,v 1.5 2007-05-30 05:25:55 jwdonal Exp $
+-- $Id: clk_lcd_cyc_cntr.vhd,v 1.6 2007-05-31 19:42:51 jwdonal Exp $
 --
 -- Description:
 --   Counts the number of CLK_LCD cycles that have occured after C_VSYNC_TVS
@@ -276,7 +276,7 @@ begin
   --    This is finite state machine process 3 of 3 for counting the
   --    number of CLK_LCD cycles that have passed which controls
   --    the pixel and ENAB count value (clk_cyc_num_reg).  This process
-  --    only controls the change of output values cased on the current
+  --    only controls the change of output values based on the current
   --    state.
   --  
   --  Inputs:

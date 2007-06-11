@@ -1,0 +1,11 @@
+# Output products list for <image_gen_bram_blue>
+image_gen_bram_blue.asy
+image_gen_bram_blue.edn
+image_gen_bram_blue.mif
+image_gen_bram_blue.sym
+image_gen_bram_blue.v
+image_gen_bram_blue.veo
+image_gen_bram_blue.vhd
+image_gen_bram_blue.vho
+image_gen_bram_blue.xco
+image_gen_bram_blue_flist.txt

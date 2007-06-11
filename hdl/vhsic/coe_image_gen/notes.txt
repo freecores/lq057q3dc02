@@ -21,7 +21,7 @@ In order for these pre-built files to work the project directory structure must 
 <Parent_Directory_Name_Here>
 |
 |--> "ise_files"
-|--> "src"
+|--> "coe_image_gen"
 
 "ise_files" is the ISE project directory
 

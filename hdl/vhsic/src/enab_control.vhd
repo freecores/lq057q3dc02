@@ -18,13 +18,12 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: enab_control.vhd,v 1.1 2007-06-11 07:17:36 jwdonal Exp $
+-- $Id: enab_control.vhd,v 1.2 2008-01-04 06:41:18 jwdonal Exp $
 --
 -- Description:
---  This file controls ENAB.  This is the hardest state machine of the three.  ENAB
---  is dependent upon both HSYNCx, VSYNCx, and the number of CLK_LCD cycles that have
---  passed.  But it's still really not too bad.  ENAB "tells" (i.e. "enables")
---  the shift registers inside the LCD to start accepting data.
+--  This file controls ENAB.  ENAB is dependent upon both HSYNCx, VSYNCx, and
+--  the number of CLK_LCD cycles that have passed.  ENAB "tells" (i.e.
+--  "enables") the shift registers inside the LCD to start accepting data.
 --
 -- Structure:
 --   - xupv2p.ucf

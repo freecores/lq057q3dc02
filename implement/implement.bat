@@ -1,7 +1,7 @@
 @echo off
 REM --------------------------------------------------------------------------
 REM Author: Jonathon W. Donaldson
-REM Rev-Mod:  $Id: implement.bat,v 1.2 2008-11-07 01:24:45 jwdonal Exp $
+REM Rev-Mod:  $Id: implement.bat,v 1.3 2008-11-07 01:35:17 jwdonal Exp $
 REM --------------------------------------------------------------------------
 
 REM ------------------------------------------------------------------------------
@@ -48,7 +48,7 @@ del *.ngc *.lst *.lso *.ncd *.pad *.ngd *.ngm *.xml *.unroutes *.xpi *.drc *.log
 
 REM Run `cvs edit' on appropriate output files so that Xilinx can write to them and then we can compare later.
 ECHO SCRIPT: Attempting to retrieve edit priveleges from CVS repository server...
-cvs ediit -z *.bgn *.par *.twr *.map *.mrp *.blc *.bld *.bit *.srp *.nlf
+cvs edit -z *.bgn *.par *.twr *.map *.mrp *.blc *.bld *.bit *.srp *.nlf
 
 ECHO SCRIPT: Synthesizing design with XST...
 xst -ifn ..\xst.scr -ofn lq057q3dc02_top_part.srp

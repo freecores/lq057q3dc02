@@ -18,10 +18,13 @@
 #
 ##############################################################################
 #
-# $Id: lq057q3dc02.tcl,v 1.1 2008-11-07 00:48:12 jwdonal Exp $
+# $Id: lq057q3dc02.tcl,v 1.2 2008-11-07 05:38:36 jwdonal Exp $
 #
 # Description:
-#   Tcl script to run in the Xilinx Tcl shell or the ISE Tcl Console.
+#   Tcl script to run in the Xilinx Tcl shell or the ISE Tcl Console.  This
+#   method is DEPRECATED.  Simply use the batch scripts found in the
+#   'implement' directory for project management.  The GUI is nothing but
+#   a memory hog - real men use scripts and plain text editors!!!
 #
 # Structure:
 #   - xupv2p.ucf

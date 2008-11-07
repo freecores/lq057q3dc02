@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: lq057q3dc02_tb.vhd,v 1.1 2008-11-07 00:48:12 jwdonal Exp $
+-- $Id: lq057q3dc02_tb.vhd,v 1.2 2008-11-07 05:41:08 jwdonal Exp $
 --
 -- Description:
 --   Test bench to verify lq057q3dc02 pcore.
@@ -74,7 +74,7 @@ END ENTITY lq057q3dc02_tb;
 
 ARCHITECTURE lq057q3dc02_tb_arch OF lq057q3dc02_tb IS 
 
-  COMPONENT lq057q3dc02
+  COMPONENT lq057q3dc02_top
     PORT(
       RSTx,
       CLK_100M_PAD : IN std_logic;
@@ -121,7 +121,7 @@ BEGIN
   --/////////////////--
   -- UNIT UNDER TEST --
   --/////////////////--
-  uut: lq057q3dc02
+  uut: lq057q3dc02_top
   port map (
   
      RSTx => RSTx,

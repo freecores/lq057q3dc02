@@ -8,21 +8,21 @@ lq057q3dc02_top.ncd lq057q3dc02_top.pcf
 Target Device  : xc2vp30
 Target Package : ff896
 Target Speed   : -7
-Mapper Version : virtex2p -- $Revision: 1.1 $
-Mapped Date    : Thu Nov 06 13:56:04 2008
+Mapper Version : virtex2p -- $Revision: 1.2 $
+Mapped Date    : Thu Nov 06 18:45:32 2008
 
 Design Summary
 --------------
 Number of errors:      0
 Number of warnings:    2
 Logic Utilization:
-  Number of Slice Flip Flops:          85 out of  27,392    1%
-  Number of 4 input LUTs:             385 out of  27,392    1%
+  Number of Slice Flip Flops:          66 out of  27,392    1%
+  Number of 4 input LUTs:             189 out of  27,392    1%
 Logic Distribution:
-  Number of occupied Slices:          250 out of  13,696    1%
-Total Number of 4 input LUTs:            405 out of  27,392    1%
-  Number used as logic:               385
-  Number used as a route-thru:         20
+  Number of occupied Slices:          127 out of  13,696    1%
+Total Number of 4 input LUTs:            197 out of  27,392    1%
+  Number used as logic:               189
+  Number used as a route-thru:          8
 
   Number of bonded IOBs:               27 out of     556    4%
     IOB Flip Flops:                     1
@@ -33,11 +33,11 @@ Total Number of 4 input LUTs:            405 out of  27,392    1%
   Number of GTs:                        0 out of       8    0%
   Number of GT10s:                      0 out of       0    0%
 
-Total equivalent gate count for design:  5,712,197
+Total equivalent gate count for design:  5,710,614
 Additional JTAG gate count for IOBs:  1,296
-Peak Memory Usage:  238 MB
-Total REAL time to MAP completion:  23 secs 
-Total CPU time to MAP completion:   22 secs 
+Peak Memory Usage:  228 MB
+Total REAL time to MAP completion:  24 secs 
+Total CPU time to MAP completion:   21 secs 
 
 Table of Contents
 -----------------
@@ -66,7 +66,7 @@ WARNING:LIT:395 - The above warning message base_net_load_rule is repeated 8
    N2,
    DCM_LCD_CLK/CLKFX_OUT,
    DCM_LCD_CLK/N0,
-   IMAGE/N196,
+   IMAGE/N136,
    V_C/VSYNCx_C/N42
    To see the details of these warning messages, please use the -detail switch.
 
@@ -94,7 +94,7 @@ INFO:Pack:1650 - Map created a placed design.
 
 Section 4 - Removed Logic Summary
 ---------------------------------
-   9 block(s) removed
+  15 block(s) removed
   14 block(s) optimized away
   10 signal(s) removed
 
@@ -119,13 +119,19 @@ The signal "DCM_LCD_CLK/CLKFX_OUT" is sourceless and has been removed.
 The signal "DCM_LCD_CLK/CLKFX_BUF" is sourceless and has been removed.
  Sourceless block "DCM_LCD_CLK/CLKFX_BUFG_INST" (CKBUF) removed.
 The signal "DCM_LCD_CLK/N0" is sourceless and has been removed.
-The signal "IMAGE/N196" is sourceless and has been removed.
+The signal "IMAGE/N136" is sourceless and has been removed.
 The signal "V_C/VSYNCx_C/N42" is sourceless and has been removed.
 The signal "V_C/CLK_LCD_CYCLE_Cntr/N119" is sourceless and has been removed.
 The signal "V_C/ENAB_C/N65" is sourceless and has been removed.
 The signal "V_C/ENAB_C/N66" is sourceless and has been removed.
 Unused block "DCM_LCD_CLK/XST_VCC" (ONE) removed.
 Unused block "IMAGE/XST_VCC" (ONE) removed.
+Unused block "IMAGE/image_BLUE_data/GND" (ZERO) removed.
+Unused block "IMAGE/image_BLUE_data/VCC" (ONE) removed.
+Unused block "IMAGE/image_GREEN_data/GND" (ZERO) removed.
+Unused block "IMAGE/image_GREEN_data/VCC" (ONE) removed.
+Unused block "IMAGE/image_RED_data/GND" (ZERO) removed.
+Unused block "IMAGE/image_RED_data/VCC" (ONE) removed.
 Unused block "V_C/CLK_LCD_CYCLE_Cntr/XST_VCC" (ONE) removed.
 Unused block "V_C/ENAB_C/XST_GND" (ZERO) removed.
 Unused block "V_C/ENAB_C/XST_VCC" (ONE) removed.
@@ -135,12 +141,12 @@ Optimized Block(s):
 TYPE 		BLOCK
 GND 		DCM_LCD_CLK/XST_GND
 GND 		IMAGE/XST_GND
-GND 		IMAGE/image_BLUE_data/GND
-VCC 		IMAGE/image_BLUE_data/VCC
-GND 		IMAGE/image_GREEN_data/GND
-VCC 		IMAGE/image_GREEN_data/VCC
-GND 		IMAGE/image_RED_data/GND
-VCC 		IMAGE/image_RED_data/VCC
+GND 		IMAGE/image_BLUE_data/BU2/XST_GND
+VCC 		IMAGE/image_BLUE_data/BU2/XST_VCC
+GND 		IMAGE/image_GREEN_data/BU2/XST_GND
+VCC 		IMAGE/image_GREEN_data/BU2/XST_VCC
+GND 		IMAGE/image_RED_data/BU2/XST_GND
+VCC 		IMAGE/image_RED_data/BU2/XST_VCC
 GND 		V_C/CLK_LCD_CYCLE_Cntr/XST_GND
 GND 		V_C/HSYNCx_C/XST_GND
 VCC 		V_C/HSYNCx_C/XST_VCC
@@ -229,8 +235,8 @@ Asterisk (*) preceding a constraint indicates it was not met.
   Constraint                                |  Check  | Worst Case |  Best Case | Timing |   Timing   
                                             |         |    Slack   | Achievable | Errors |    Score   
 ------------------------------------------------------------------------------------------------------
-  PERIOD analysis for net "DCM_LCD_CLK/CLKD | SETUP   |   153.129ns|     6.871ns|       0|           0
-  V_BUF" derived from  NET "DCM_LCD_CLK/CLK | HOLD    |     0.622ns|            |       0|           0
+  PERIOD analysis for net "DCM_LCD_CLK/CLKD | SETUP   |   154.254ns|     5.746ns|       0|           0
+  V_BUF" derived from  NET "DCM_LCD_CLK/CLK | HOLD    |     0.608ns|            |       0|           0
   IN_IBUFG_OUT" PERIOD = 10 ns HIGH 50%  mu |         |            |            |        |            
   ltiplied by 16.00 and duty cycle correcte |         |            |            |        |            
   d to 160 nS  HIGH 80 nS                   |         |            |            |        |            

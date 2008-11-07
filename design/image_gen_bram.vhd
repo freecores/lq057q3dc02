@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: image_gen_bram.vhd,v 1.1 2008-11-07 00:48:12 jwdonal Exp $
+-- $Id: image_gen_bram.vhd,v 1.2 2008-11-07 04:54:32 jwdonal Exp $
 --
 -- Description: This file controls the BRAM components for each color.
 --
@@ -126,32 +126,29 @@ begin
   --three components are initialized with 3 different COE files!
   image_RED_data : image_gen_bram_red
   port map (
-    CLK => CLK_LCD,
-    SINIT => SINIT_wire,
-    ADDR => ADDR_wire,
+    clka => CLK_LCD,
+    addra => ADDR_wire,
     
     -- OUTPUTS --
-    DOUT => R
+    douta => R
   );
   
   image_GREEN_data : image_gen_bram_green
   port map (
-    CLK => CLK_LCD,
-    SINIT => SINIT_wire,
-    ADDR => ADDR_wire,
+    clka => CLK_LCD,
+    addra => ADDR_wire,
     
     -- OUTPUTS --
-    DOUT => G
+    douta => G
   );
   
   image_BLUE_data : image_gen_bram_blue
   port map (
-    CLK => CLK_LCD,
-    SINIT => SINIT_wire,
-    ADDR => ADDR_wire,
+    clka => CLK_LCD,
+    addra => ADDR_wire,
     
     -- OUTPUTS --
-    DOUT => B
+    douta => B
   );
 
 
@@ -162,7 +159,8 @@ begin
   --    the Xilinx core customization.  The SINIT signal is enabled
   --    b/w every line and b/w every new frame.  This value is recommended
   --    to be zero to conserver power but it doesn't really matter what
-  --    it is.
+  --    it is.  In this design it is not connected but feel free to connect
+  --    it up yourself - everything should work exactly the same.
   --  
   --  Inputs:
   --    RSTx

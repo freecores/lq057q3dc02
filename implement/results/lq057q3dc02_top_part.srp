@@ -47,30 +47,30 @@ Keep Hierarchy                     : soft
 =========================================================================
 *                          HDL Compilation                              *
 =========================================================================
-Compiling vhdl file "D:/MyDocuments/OpenCores/projects/lq057q3dc02/hdl/vhsic/design/components.vhd" in Library work_vhsic.
+Compiling vhdl file "D:/MyDocuments/OpenCores/projects/lq057q3dc02/design/components.vhd" in Library work_vhsic.
 Package <components> compiled.
-Compiling vhdl file "D:/MyDocuments/OpenCores/projects/lq057q3dc02/hdl/vhsic/design/hsyncx_control.vhd" in Library work_vhsic.
+Compiling vhdl file "D:/MyDocuments/OpenCores/projects/lq057q3dc02/design/hsyncx_control.vhd" in Library work_vhsic.
 Entity <hsyncx_control> compiled.
 Entity <hsyncx_control> (Architecture <hsyncx_control_arch>) compiled.
-Compiling vhdl file "D:/MyDocuments/OpenCores/projects/lq057q3dc02/hdl/vhsic/design/vsyncx_control.vhd" in Library work_vhsic.
+Compiling vhdl file "D:/MyDocuments/OpenCores/projects/lq057q3dc02/design/vsyncx_control.vhd" in Library work_vhsic.
 Entity <vsyncx_control> compiled.
 Entity <vsyncx_control> (Architecture <vsyncx_control_arch>) compiled.
-Compiling vhdl file "D:/MyDocuments/OpenCores/projects/lq057q3dc02/hdl/vhsic/design/clk_lcd_cyc_cntr.vhd" in Library work_vhsic.
+Compiling vhdl file "D:/MyDocuments/OpenCores/projects/lq057q3dc02/design/clk_lcd_cyc_cntr.vhd" in Library work_vhsic.
 Entity <clk_lcd_cyc_cntr> compiled.
 Entity <clk_lcd_cyc_cntr> (Architecture <clk_lcd_cyc_cntr_arch>) compiled.
-Compiling vhdl file "D:/MyDocuments/OpenCores/projects/lq057q3dc02/hdl/vhsic/design/enab_control.vhd" in Library work_vhsic.
+Compiling vhdl file "D:/MyDocuments/OpenCores/projects/lq057q3dc02/design/enab_control.vhd" in Library work_vhsic.
 Entity <enab_control> compiled.
 Entity <enab_control> (Architecture <enab_control_arch>) compiled.
-Compiling vhdl file "D:/MyDocuments/OpenCores/projects/lq057q3dc02/hdl/vhsic/design/dcm_sys_to_lcd.vhd" in Library work_vhsic.
+Compiling vhdl file "D:/MyDocuments/OpenCores/projects/lq057q3dc02/design/dcm_sys_to_lcd.vhd" in Library work_vhsic.
 Entity <dcm_sys_to_lcd> compiled.
 Entity <dcm_sys_to_lcd> (Architecture <BEHAVIORAL>) compiled.
-Compiling vhdl file "D:/MyDocuments/OpenCores/projects/lq057q3dc02/hdl/vhsic/design/video_controller.vhd" in Library work_vhsic.
+Compiling vhdl file "D:/MyDocuments/OpenCores/projects/lq057q3dc02/design/video_controller.vhd" in Library work_vhsic.
 Entity <video_controller> compiled.
 Entity <video_controller> (Architecture <video_controller_arch>) compiled.
-Compiling vhdl file "D:/MyDocuments/OpenCores/projects/lq057q3dc02/hdl/vhsic/design/image_gen_bram.vhd" in Library work_vhsic.
+Compiling vhdl file "D:/MyDocuments/OpenCores/projects/lq057q3dc02/design/image_gen_bram.vhd" in Library work_vhsic.
 Entity <image_gen_bram> compiled.
 Entity <image_gen_bram> (Architecture <image_gen_bram_arch>) compiled.
-Compiling vhdl file "D:/MyDocuments/OpenCores/projects/lq057q3dc02/hdl/vhsic/design/lq057q3dc02_top.vhd" in Library work_vhsic.
+Compiling vhdl file "D:/MyDocuments/OpenCores/projects/lq057q3dc02/design/lq057q3dc02_top.vhd" in Library work_vhsic.
 Entity <lq057q3dc02_top> compiled.
 Entity <lq057q3dc02_top> (Architecture <lq057q3dc02_top_arch>) compiled.
 
@@ -169,9 +169,9 @@ Analyzing generic Entity <lq057q3dc02_top> in library <work_vhsic> (Architecture
 	C_VSYNC_TV = 255
 	C_VSYNC_TVP = 3
 	C_VSYNC_TVS = 7
-WARNING:Xst:753 - "D:/MyDocuments/OpenCores/projects/lq057q3dc02/hdl/vhsic/design/lq057q3dc02_top.vhd" line 307: Unconnected output port 'CLKIN_IBUFG_OUT' of component 'dcm_sys_to_lcd'.
-WARNING:Xst:753 - "D:/MyDocuments/OpenCores/projects/lq057q3dc02/hdl/vhsic/design/lq057q3dc02_top.vhd" line 307: Unconnected output port 'CLK0_OUT' of component 'dcm_sys_to_lcd'.
-WARNING:Xst:753 - "D:/MyDocuments/OpenCores/projects/lq057q3dc02/hdl/vhsic/design/lq057q3dc02_top.vhd" line 307: Unconnected output port 'CLKFX_OUT' of component 'dcm_sys_to_lcd'.
+WARNING:Xst:753 - "D:/MyDocuments/OpenCores/projects/lq057q3dc02/design/lq057q3dc02_top.vhd" line 307: Unconnected output port 'CLKIN_IBUFG_OUT' of component 'dcm_sys_to_lcd'.
+WARNING:Xst:753 - "D:/MyDocuments/OpenCores/projects/lq057q3dc02/design/lq057q3dc02_top.vhd" line 307: Unconnected output port 'CLK0_OUT' of component 'dcm_sys_to_lcd'.
+WARNING:Xst:753 - "D:/MyDocuments/OpenCores/projects/lq057q3dc02/design/lq057q3dc02_top.vhd" line 307: Unconnected output port 'CLKFX_OUT' of component 'dcm_sys_to_lcd'.
 Entity <lq057q3dc02_top> analyzed. Unit <lq057q3dc02_top> generated.
 
 Analyzing Entity <dcm_sys_to_lcd> in library <work_vhsic> (Architecture <BEHAVIORAL>).
@@ -258,7 +258,7 @@ Entity <image_gen_bram> analyzed. Unit <image_gen_bram> generated.
 Performing bidirectional port resolution...
 
 Synthesizing Unit <hsyncx_control>.
-    Related source file is "D:/MyDocuments/OpenCores/projects/lq057q3dc02/hdl/vhsic/design/hsyncx_control.vhd".
+    Related source file is "D:/MyDocuments/OpenCores/projects/lq057q3dc02/design/hsyncx_control.vhd".
     Found 1-bit register for signal <HSYNCx>.
     Found 10-bit comparator less for signal <HSYNCx$cmp_lt0000> created at line 136.
     Found 9-bit up counter for signal <num_hsyncx_clks_reg>.
@@ -270,7 +270,7 @@ Unit <hsyncx_control> synthesized.
 
 
 Synthesizing Unit <vsyncx_control>.
-    Related source file is "D:/MyDocuments/OpenCores/projects/lq057q3dc02/hdl/vhsic/design/vsyncx_control.vhd".
+    Related source file is "D:/MyDocuments/OpenCores/projects/lq057q3dc02/design/vsyncx_control.vhd".
     Found finite state machine <FSM_0> for signal <Line_Cntr_cs>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
@@ -297,7 +297,7 @@ Unit <vsyncx_control> synthesized.
 
 
 Synthesizing Unit <clk_lcd_cyc_cntr>.
-    Related source file is "D:/MyDocuments/OpenCores/projects/lq057q3dc02/hdl/vhsic/design/clk_lcd_cyc_cntr.vhd".
+    Related source file is "D:/MyDocuments/OpenCores/projects/lq057q3dc02/design/clk_lcd_cyc_cntr.vhd".
     Found finite state machine <FSM_1> for signal <CLK_Cntr_cs>.
     -----------------------------------------------------------------------
     | States             | 5                                              |
@@ -322,7 +322,7 @@ Unit <clk_lcd_cyc_cntr> synthesized.
 
 
 Synthesizing Unit <enab_control>.
-    Related source file is "D:/MyDocuments/OpenCores/projects/lq057q3dc02/hdl/vhsic/design/enab_control.vhd".
+    Related source file is "D:/MyDocuments/OpenCores/projects/lq057q3dc02/design/enab_control.vhd".
     Found 1-bit register for signal <ENAB>.
     Found 10-bit comparator greatequal for signal <ENAB$cmp_ge0000> created at line 131.
     Found 10-bit comparator less for signal <ENAB$cmp_lt0000> created at line 131.
@@ -333,34 +333,31 @@ Unit <enab_control> synthesized.
 
 
 Synthesizing Unit <dcm_sys_to_lcd>.
-    Related source file is "D:/MyDocuments/OpenCores/projects/lq057q3dc02/hdl/vhsic/design/dcm_sys_to_lcd.vhd".
+    Related source file is "D:/MyDocuments/OpenCores/projects/lq057q3dc02/design/dcm_sys_to_lcd.vhd".
 Unit <dcm_sys_to_lcd> synthesized.
 
 
 Synthesizing Unit <video_controller>.
-    Related source file is "D:/MyDocuments/OpenCores/projects/lq057q3dc02/hdl/vhsic/design/video_controller.vhd".
+    Related source file is "D:/MyDocuments/OpenCores/projects/lq057q3dc02/design/video_controller.vhd".
 Unit <video_controller> synthesized.
 
 
 Synthesizing Unit <image_gen_bram>.
-    Related source file is "D:/MyDocuments/OpenCores/projects/lq057q3dc02/hdl/vhsic/design/image_gen_bram.vhd".
+    Related source file is "D:/MyDocuments/OpenCores/projects/lq057q3dc02/design/image_gen_bram.vhd".
+WARNING:Xst:646 - Signal <SINIT_wire> is assigned but never used.
     Found 17-bit up counter for signal <ADDR_wire>.
-    Found 10-bit comparator greatequal for signal <ADDR_wire$cmp_ge0000> created at line 235.
-    Found 10-bit comparator greatequal for signal <ADDR_wire$cmp_ge0001> created at line 241.
-    Found 10-bit comparator less for signal <ADDR_wire$cmp_lt0000> created at line 235.
-    Found 1-bit register for signal <SINIT_wire>.
-    Found 10-bit comparator greatequal for signal <SINIT_wire$cmp_ge0000> created at line 186.
-    Found 10-bit comparator less for signal <SINIT_wire$cmp_lt0000> created at line 186.
-    Found 10-bit comparator less for signal <SINIT_wire$cmp_lt0001> created at line 186.
+    Found 10-bit comparator greatequal for signal <ADDR_wire$cmp_ge0000> created at line 232.
+    Found 10-bit comparator greatequal for signal <ADDR_wire$cmp_ge0001> created at line 238.
+    Found 10-bit comparator less for signal <ADDR_wire$cmp_lt0000> created at line 232.
+    Found 10-bit comparator less for signal <ADDR_wire$cmp_lt0001> created at line 232.
     Summary:
 	inferred   1 Counter(s).
-	inferred   1 D-type flip-flop(s).
-	inferred   6 Comparator(s).
+	inferred   4 Comparator(s).
 Unit <image_gen_bram> synthesized.
 
 
 Synthesizing Unit <lq057q3dc02_top>.
-    Related source file is "D:/MyDocuments/OpenCores/projects/lq057q3dc02/hdl/vhsic/design/lq057q3dc02_top.vhd".
+    Related source file is "D:/MyDocuments/OpenCores/projects/lq057q3dc02/design/lq057q3dc02_top.vhd".
 Unit <lq057q3dc02_top> synthesized.
 
 
@@ -371,11 +368,11 @@ Macro Statistics
 # Counters                                             : 4
  17-bit up counter                                     : 1
  9-bit up counter                                      : 3
-# Registers                                            : 4
- 1-bit register                                        : 4
-# Comparators                                          : 11
- 10-bit comparator greatequal                          : 4
- 10-bit comparator less                                : 7
+# Registers                                            : 3
+ 1-bit register                                        : 3
+# Comparators                                          : 9
+ 10-bit comparator greatequal                          : 3
+ 10-bit comparator less                                : 6
 
 =========================================================================
 
@@ -414,11 +411,11 @@ Macro Statistics
 # Counters                                             : 4
  17-bit up counter                                     : 1
  9-bit up counter                                      : 3
-# Registers                                            : 9
- Flip-Flops                                            : 9
-# Comparators                                          : 11
- 10-bit comparator greatequal                          : 4
- 10-bit comparator less                                : 7
+# Registers                                            : 8
+ Flip-Flops                                            : 8
+# Comparators                                          : 9
+ 10-bit comparator greatequal                          : 3
+ 10-bit comparator less                                : 6
 
 =========================================================================
 
@@ -469,8 +466,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 53
- Flip-Flops                                            : 53
+# Registers                                            : 52
+ Flip-Flops                                            : 52
 
 =========================================================================
 
@@ -498,23 +495,23 @@ Design Statistics
 # IOs                              : 27
 
 Cell Usage :
-# BELS                             : 212
+# BELS                             : 207
 #      GND                         : 6
 #      INV                         : 9
 #      LUT1                        : 8
 #      LUT2                        : 7
-#      LUT2_L                      : 4
-#      LUT3                        : 26
-#      LUT3_D                      : 2
+#      LUT2_L                      : 5
+#      LUT3                        : 25
+#      LUT3_D                      : 1
 #      LUT3_L                      : 1
-#      LUT4                        : 55
+#      LUT4                        : 52
 #      LUT4_L                      : 7
 #      MUXCY                       : 40
-#      MUXF5                       : 2
+#      MUXF5                       : 1
 #      VCC                         : 2
 #      XORCY                       : 43
-# FlipFlops/Latches                : 53
-#      FDC                         : 24
+# FlipFlops/Latches                : 52
+#      FDC                         : 23
 #      FDCE                        : 26
 #      FDP                         : 3
 # Clock Buffers                    : 3
@@ -536,9 +533,9 @@ Device utilization summary:
 
 Selected Device : 2vp30ff896-7 
 
- Number of Slices:                      60  out of  13696     0%  
- Number of Slice Flip Flops:            53  out of  27392     0%  
- Number of 4 input LUTs:               119  out of  27392     0%  
+ Number of Slices:                      58  out of  13696     0%  
+ Number of Slice Flip Flops:            52  out of  27392     0%  
+ Number of 4 input LUTs:               115  out of  27392     0%  
  Number of IOs:                         27
  Number of bonded IOBs:                 26  out of    556     4%  
  Number of GCLKs:                        3  out of     16    18%  
@@ -565,7 +562,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-CLK_100M_PAD                       | DCM_INST:CLKDV         | 53    |
+CLK_100M_PAD                       | DCM_INST:CLKDV         | 52    |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -573,10 +570,10 @@ Asynchronous Control Signals Information:
 -----------------------------------------------------------------------------------------------+----------------------------------------------+-------+
 Control Signal                                                                                 | Buffer(FF name)                              | Load  |
 -----------------------------------------------------------------------------------------------+----------------------------------------------+-------+
-V_C/CLK_LCD_CYCLE_Cntr/CLK_Cntr_cs_Rst_inv(V_C/CLK_LCD_CYCLE_Cntr/CLK_Cntr_cs_Rst_inv1_INV_0:O)| NONE(V_C/CLK_LCD_CYCLE_Cntr/CLK_Cntr_cs_FFd3)| 12    |
-V_C/VSYNCx_C/Line_Cntr_cs_Rst_inv(V_C/VSYNCx_C/Line_Cntr_cs_Rst_inv1_INV_0:O)                  | NONE(V_C/VSYNCx_C/line_num_reg_7)            | 12    |
-IMAGE/RSTx_inv(IMAGE/RSTx_inv1_INV_0:O)                                                        | NONE(IMAGE/ADDR_wire_15)                     | 18    |
-V_C/HSYNCx_C/RSTx_inv(V_C/HSYNCx_C/RSTx_inv1_INV_0:O)                                          | NONE(V_C/HSYNCx_C/num_hsyncx_clks_reg_2)     | 10    |
+V_C/HSYNCx_C/RSTx_inv(V_C/HSYNCx_C/RSTx_inv1_INV_0:O)                                          | NONE(V_C/HSYNCx_C/num_hsyncx_clks_reg_5)     | 10    |
+IMAGE/RSTx_inv(IMAGE/RSTx_inv1_INV_0:O)                                                        | NONE(IMAGE/ADDR_wire_6)                      | 17    |
+V_C/VSYNCx_C/Line_Cntr_cs_Rst_inv(V_C/VSYNCx_C/Line_Cntr_cs_Rst_inv1_INV_0:O)                  | NONE(V_C/VSYNCx_C/line_num_reg_5)            | 12    |
+V_C/CLK_LCD_CYCLE_Cntr/CLK_Cntr_cs_Rst_inv(V_C/CLK_LCD_CYCLE_Cntr/CLK_Cntr_cs_Rst_inv1_INV_0:O)| NONE(V_C/CLK_LCD_CYCLE_Cntr/CLK_Cntr_cs_FFd1)| 12    |
 V_C/ENAB_C/RSTx_inv(V_C/ENAB_C/RSTx_inv1_INV_0:O)                                              | NONE(V_C/ENAB_C/ENAB)                        | 1     |
 -----------------------------------------------------------------------------------------------+----------------------------------------------+-------+
 
@@ -596,7 +593,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'CLK_100M_PAD'
   Clock period: 0.500ns (frequency: 2000.475MHz)
-  Total number of paths / destination ports: 2304 / 79
+  Total number of paths / destination ports: 2197 / 78
 -------------------------------------------------------------------------
 Delay:               3.999ns (Levels of Logic = 21)
   Source:            V_C/VSYNCx_C/line_num_reg_6 (FF)
@@ -612,7 +609,7 @@ Delay:               3.999ns (Levels of Logic = 21)
      end scope: 'VSYNCx_C'
      end scope: 'V_C'
      begin scope: 'IMAGE'
-     LUT4:I0->O           16   0.275   0.668  Mcount_ADDR_wire_lut<0>_SW0 (N146)
+     LUT4:I0->O           16   0.275   0.668  Mcount_ADDR_wire_lut<0>_SW0 (N92)
      LUT4:I3->O            1   0.275   0.000  Mcount_ADDR_wire_lut<0> (N2)
      MUXCY:S->O            1   0.334   0.000  Mcount_ADDR_wire_cy<0> (Mcount_ADDR_wire_cy<0>)
      MUXCY:CI->O           1   0.036   0.000  Mcount_ADDR_wire_cy<1> (Mcount_ADDR_wire_cy<1>)
@@ -638,7 +635,7 @@ Delay:               3.999ns (Levels of Logic = 21)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'CLK_100M_PAD'
-  Total number of paths / destination ports: 57 / 57
+  Total number of paths / destination ports: 54 / 54
 -------------------------------------------------------------------------
 Offset:              3.390ns (Levels of Logic = 2)
   Source:            V_C/HSYNCx_C/HSYNCx (FF)
@@ -662,14 +659,14 @@ Timing constraint: Default path analysis
   Total number of paths / destination ports: 18 / 18
 -------------------------------------------------------------------------
 Delay:               2.924ns (Levels of Logic = 2)
-  Source:            IMAGE/image_BLUE_data:DOUT<5> (PAD)
+  Source:            IMAGE/image_BLUE_data:douta<5> (PAD)
   Destination:       B<5> (PAD)
 
-  Data Path: IMAGE/image_BLUE_data:DOUT<5> to B<5>
+  Data Path: IMAGE/image_BLUE_data:douta<5> to B<5>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-    image_gen_bram_blue:DOUT<5>    1   0.000   0.000  image_BLUE_data (B<5>)
+    image_gen_bram_blue:douta<5>    1   0.000   0.000  image_BLUE_data (B<5>)
      end scope: 'IMAGE'
      OBUF:I->O                 2.592          B_5_OBUF (B<5>)
     ----------------------------------------
@@ -677,13 +674,13 @@ Delay:               2.924ns (Levels of Logic = 2)
                                        (100.0% logic, 0.0% route)
 
 =========================================================================
-CPU : 13.19 / 13.31 s | Elapsed : 13.00 / 14.00 s
+CPU : 13.47 / 13.59 s | Elapsed : 13.00 / 13.00 s
  
 --> 
 
 Total memory usage is 206148 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   21 (   0 filtered)
+Number of warnings :   22 (   0 filtered)
 Number of infos    :    0 (   0 filtered)
 

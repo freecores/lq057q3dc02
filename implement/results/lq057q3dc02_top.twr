@@ -33,8 +33,8 @@ Timing constraint: PERIOD analysis for net "DCM_LCD_CLK/CLKDV_BUF" derived from
  NET "DCM_LCD_CLK/CLKIN_IBUFG_OUT" PERIOD = 10 ns HIGH 50%;  multiplied by 
 16.00 and duty cycle corrected to 160 nS  HIGH 80 nS  
 
- 3903 items analyzed, 0 timing errors detected. (0 setup errors, 0 hold errors)
- Minimum period is  10.079ns.
+ 3691 items analyzed, 0 timing errors detected. (0 setup errors, 0 hold errors)
+ Minimum period is   9.208ns.
 --------------------------------------------------------------------------------
 
 ================================================================================
@@ -56,7 +56,7 @@ Clock to Setup on destination clock CLK_100M_PAD
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-CLK_100M_PAD   |   10.079|         |         |         |
+CLK_100M_PAD   |    9.208|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 
@@ -65,13 +65,13 @@ Timing summary:
 
 Timing errors: 0  Score: 0
 
-Constraints cover 3903 paths, 0 nets, and 2359 connections
+Constraints cover 3691 paths, 0 nets, and 1952 connections
 
 Design statistics:
-   Minimum period:  10.079ns   (Maximum frequency:  99.216MHz)
+   Minimum period:   9.208ns   (Maximum frequency: 108.601MHz)
 
 
-Analysis completed Thu Nov 06 13:57:08 2008 
+Analysis completed Thu Nov 06 18:46:44 2008 
 --------------------------------------------------------------------------------
 
 Trace Settings:

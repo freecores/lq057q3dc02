@@ -18,7 +18,7 @@
 --
 ------------------------------------------------------------------------------
 --
--- $Id: components.vhd,v 1.1 2008-11-07 00:48:12 jwdonal Exp $
+-- $Id: components.vhd,v 1.2 2008-11-07 04:54:32 jwdonal Exp $
 --
 -- Description:
 --   This is a package that lists all of the components used in the design.
@@ -74,12 +74,12 @@ PACKAGE components IS
   COMPONENT dcm_sys_to_lcd
   PORT (
     RST_IN,
-    CLKIN_IN : IN STD_LOGIC;
+    CLKIN_IN : IN std_logic;
     
     CLKIN_IBUFG_OUT,
     CLK0_OUT,
     CLKDV_OUT,
-    CLKFX_OUT       : OUT STD_LOGIC
+    CLKFX_OUT       : OUT std_logic
   );
   END COMPONENT dcm_sys_to_lcd;
 
@@ -119,7 +119,7 @@ PACKAGE components IS
     --Video Controller
     C_RL_STATUS,
     C_UD_STATUS,
-    C_VQ_STATUS : STD_LOGIC;
+    C_VQ_STATUS : std_logic;
       
     --VSYNCx Controller (pass thru)
     C_VSYNC_TV,
@@ -142,18 +142,18 @@ PACKAGE components IS
   
   PORT (
     RSTx,
-    CLK_LCD : IN  STD_LOGIC;
+    CLK_LCD : IN  std_logic;
     
-    LINE_NUM : OUT STD_LOGIC_VECTOR(C_LINE_NUM_WIDTH-1 downto 0);
+    LINE_NUM : OUT std_logic_VECTOR(C_LINE_NUM_WIDTH-1 downto 0);
     
-    CLK_LCD_CYC_NUM : OUT STD_LOGIC_VECTOR(C_CLK_LCD_CYC_NUM_WIDTH-1 downto 0);
+    CLK_LCD_CYC_NUM : OUT std_logic_VECTOR(C_CLK_LCD_CYC_NUM_WIDTH-1 downto 0);
     
     HSYNCx,
     VSYNCx,
     ENAB,
     RL,
     UD,
-    VQ    : OUT STD_LOGIC
+    VQ    : OUT std_logic
   );
   END COMPONENT video_controller;
   
@@ -169,9 +169,9 @@ PACKAGE components IS
   );
   PORT (
     RSTx,
-    CLK_LCD : IN  STD_LOGIC;
+    CLK_LCD : IN  std_logic;
     
-    HSYNCx  : OUT STD_LOGIC
+    HSYNCx  : OUT std_logic
   );
   END COMPONENT hsyncx_control;
 
@@ -189,11 +189,11 @@ PACKAGE components IS
   PORT (
     RSTx,
     CLK_LCD,
-    HSYNCx   : IN  STD_LOGIC;
+    HSYNCx   : IN  std_logic;
     
-    LINE_NUM : OUT STD_LOGIC_VECTOR(C_LINE_NUM_WIDTH-1 downto 0);
+    LINE_NUM : OUT std_logic_VECTOR(C_LINE_NUM_WIDTH-1 downto 0);
   
-    VSYNCx   : OUT STD_LOGIC
+    VSYNCx   : OUT std_logic
   );
   END COMPONENT vsyncx_control;
 
@@ -212,11 +212,11 @@ PACKAGE components IS
   );
   PORT (
     RSTx,
-    CLK_LCD : IN STD_LOGIC;
+    CLK_LCD : IN std_logic;
     
-    CLK_LCD_CYC_NUM : IN STD_LOGIC_VECTOR(C_CLK_LCD_CYC_NUM_WIDTH-1 downto 0);
+    CLK_LCD_CYC_NUM : IN std_logic_VECTOR(C_CLK_LCD_CYC_NUM_WIDTH-1 downto 0);
     
-    ENAB  : OUT STD_LOGIC
+    ENAB  : OUT std_logic
   );
   END COMPONENT enab_control;
 
@@ -242,15 +242,15 @@ PACKAGE components IS
   );
   PORT (
     RSTx,
-    CLK_LCD : IN STD_LOGIC;
+    CLK_LCD : IN std_logic;
     
-    LINE_NUM : IN STD_LOGIC_VECTOR(C_LINE_NUM_WIDTH-1 downto 0);
+    LINE_NUM : IN std_logic_VECTOR(C_LINE_NUM_WIDTH-1 downto 0);
     
-    CLK_LCD_CYC_NUM : IN STD_LOGIC_VECTOR(C_CLK_LCD_CYC_NUM_WIDTH-1 downto 0);
+    CLK_LCD_CYC_NUM : IN std_logic_VECTOR(C_CLK_LCD_CYC_NUM_WIDTH-1 downto 0);
     
     R,
     G,
-    B : OUT STD_LOGIC_VECTOR(C_BIT_DEPTH/3-1 downto 0)
+    B : OUT std_logic_VECTOR(C_BIT_DEPTH/3-1 downto 0)
   );
   END COMPONENT image_gen_bram;
 
@@ -267,30 +267,27 @@ PACKAGE components IS
   --image in each row would be "smeared" across the remaining pixels in the row!
   COMPONENT image_gen_bram_red
   PORT (
-    CLK,
-    SINIT : IN STD_LOGIC;
-    ADDR : IN STD_LOGIC_VECTOR(17-1 downto 0);    
-    DOUT : OUT STD_LOGIC_VECTOR(6-1 downto 0)
+    clka : IN std_logic;
+    addra : IN std_logic_VECTOR(17-1 downto 0);    
+    douta : OUT std_logic_VECTOR(6-1 downto 0)
   );
   END COMPONENT;
   ATTRIBUTE BOX_TYPE of image_gen_bram_red: component is "USER_BLACK_BOX";
   
   COMPONENT image_gen_bram_green
   PORT (
-    CLK,
-    SINIT : IN STD_LOGIC;
-    ADDR : IN STD_LOGIC_VECTOR(17-1 downto 0);    
-    DOUT : OUT STD_LOGIC_VECTOR(6-1 downto 0)
+    clka : IN std_logic;
+    addra : IN std_logic_VECTOR(17-1 downto 0);    
+    douta : OUT std_logic_VECTOR(6-1 downto 0)
   );
   END COMPONENT;
   ATTRIBUTE BOX_TYPE of image_gen_bram_green: component is "USER_BLACK_BOX";
   
   COMPONENT image_gen_bram_blue
   PORT (
-    CLK,
-    SINIT : IN STD_LOGIC;
-    ADDR : IN STD_LOGIC_VECTOR(17-1 downto 0);    
-    DOUT : OUT STD_LOGIC_VECTOR(6-1 downto 0)
+    clka : IN std_logic;
+    addra : IN std_logic_VECTOR(17-1 downto 0);    
+    douta : OUT std_logic_VECTOR(6-1 downto 0)
   );
   END COMPONENT;
   ATTRIBUTE BOX_TYPE of image_gen_bram_blue: component is "USER_BLACK_BOX";

@@ -346,10 +346,10 @@ Synthesizing Unit <image_gen_bram>.
     Related source file is "D:/MyDocuments/OpenCores/projects/lq057q3dc02/design/image_gen_bram.vhd".
 WARNING:Xst:646 - Signal <SINIT_wire> is assigned but never used.
     Found 17-bit up counter for signal <ADDR_wire>.
-    Found 10-bit comparator greatequal for signal <ADDR_wire$cmp_ge0000> created at line 232.
-    Found 10-bit comparator greatequal for signal <ADDR_wire$cmp_ge0001> created at line 238.
-    Found 10-bit comparator less for signal <ADDR_wire$cmp_lt0000> created at line 232.
-    Found 10-bit comparator less for signal <ADDR_wire$cmp_lt0001> created at line 232.
+    Found 10-bit comparator greatequal for signal <ADDR_wire$cmp_ge0000> created at line 233.
+    Found 10-bit comparator greatequal for signal <ADDR_wire$cmp_ge0001> created at line 239.
+    Found 10-bit comparator less for signal <ADDR_wire$cmp_lt0000> created at line 233.
+    Found 10-bit comparator less for signal <ADDR_wire$cmp_lt0001> created at line 233.
     Summary:
 	inferred   1 Counter(s).
 	inferred   4 Comparator(s).
@@ -567,15 +567,15 @@ CLK_100M_PAD                       | DCM_INST:CLKDV         | 52    |
 
 Asynchronous Control Signals Information:
 ----------------------------------------
------------------------------------------------------------------------------------------------+----------------------------------------------+-------+
-Control Signal                                                                                 | Buffer(FF name)                              | Load  |
------------------------------------------------------------------------------------------------+----------------------------------------------+-------+
-V_C/HSYNCx_C/RSTx_inv(V_C/HSYNCx_C/RSTx_inv1_INV_0:O)                                          | NONE(V_C/HSYNCx_C/num_hsyncx_clks_reg_5)     | 10    |
-IMAGE/RSTx_inv(IMAGE/RSTx_inv1_INV_0:O)                                                        | NONE(IMAGE/ADDR_wire_6)                      | 17    |
-V_C/VSYNCx_C/Line_Cntr_cs_Rst_inv(V_C/VSYNCx_C/Line_Cntr_cs_Rst_inv1_INV_0:O)                  | NONE(V_C/VSYNCx_C/line_num_reg_5)            | 12    |
-V_C/CLK_LCD_CYCLE_Cntr/CLK_Cntr_cs_Rst_inv(V_C/CLK_LCD_CYCLE_Cntr/CLK_Cntr_cs_Rst_inv1_INV_0:O)| NONE(V_C/CLK_LCD_CYCLE_Cntr/CLK_Cntr_cs_FFd1)| 12    |
-V_C/ENAB_C/RSTx_inv(V_C/ENAB_C/RSTx_inv1_INV_0:O)                                              | NONE(V_C/ENAB_C/ENAB)                        | 1     |
------------------------------------------------------------------------------------------------+----------------------------------------------+-------+
+-----------------------------------------------------------------------------------------------+-----------------------------------------------+-------+
+Control Signal                                                                                 | Buffer(FF name)                               | Load  |
+-----------------------------------------------------------------------------------------------+-----------------------------------------------+-------+
+V_C/HSYNCx_C/RSTx_inv(V_C/HSYNCx_C/RSTx_inv1_INV_0:O)                                          | NONE(V_C/HSYNCx_C/HSYNCx)                     | 10    |
+V_C/CLK_LCD_CYCLE_Cntr/CLK_Cntr_cs_Rst_inv(V_C/CLK_LCD_CYCLE_Cntr/CLK_Cntr_cs_Rst_inv1_INV_0:O)| NONE(V_C/CLK_LCD_CYCLE_Cntr/clk_cyc_num_reg_1)| 12    |
+IMAGE/RSTx_inv(IMAGE/RSTx_inv1_INV_0:O)                                                        | NONE(IMAGE/ADDR_wire_10)                      | 17    |
+V_C/VSYNCx_C/Line_Cntr_cs_Rst_inv(V_C/VSYNCx_C/Line_Cntr_cs_Rst_inv1_INV_0:O)                  | NONE(V_C/VSYNCx_C/line_num_reg_6)             | 12    |
+V_C/ENAB_C/RSTx_inv(V_C/ENAB_C/RSTx_inv1_INV_0:O)                                              | NONE(V_C/ENAB_C/ENAB)                         | 1     |
+-----------------------------------------------------------------------------------------------+-----------------------------------------------+-------+
 
 Timing Summary:
 ---------------
@@ -674,7 +674,7 @@ Delay:               2.924ns (Levels of Logic = 2)
                                        (100.0% logic, 0.0% route)
 
 =========================================================================
-CPU : 13.47 / 13.59 s | Elapsed : 13.00 / 13.00 s
+CPU : 14.75 / 15.05 s | Elapsed : 15.00 / 15.00 s
  
 --> 
 

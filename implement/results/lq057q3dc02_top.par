@@ -1,7 +1,7 @@
 Release 9.2.04i par J.40
 Copyright (c) 1995-2007 Xilinx, Inc.  All rights reserved.
 
-NAUTILUS::  Thu Nov 06 18:46:08 2008
+NAUTILUS::  Sun Nov 09 22:14:10 2008
 
 par -ol high -w lq057q3dc02_top.ncd lq057q3dc02_top.ncd lq057q3dc02_top.pcf 
 
@@ -38,27 +38,27 @@ Finished initial Timing Analysis.  REAL time: 9 secs
 
 Starting Router
 
-Phase 1: 4052 unrouted;       REAL time: 21 secs 
+Phase 1: 4052 unrouted;       REAL time: 20 secs 
 
-Phase 2: 3381 unrouted;       REAL time: 22 secs 
+Phase 2: 3381 unrouted;       REAL time: 21 secs 
 
-Phase 3: 340 unrouted;       REAL time: 26 secs 
+Phase 3: 340 unrouted;       REAL time: 25 secs 
 
-Phase 4: 340 unrouted; (0)      REAL time: 26 secs 
+Phase 4: 340 unrouted; (0)      REAL time: 25 secs 
 
-Phase 5: 340 unrouted; (0)      REAL time: 26 secs 
+Phase 5: 340 unrouted; (0)      REAL time: 25 secs 
 
-Phase 6: 340 unrouted; (0)      REAL time: 26 secs 
+Phase 6: 340 unrouted; (0)      REAL time: 25 secs 
 
-Phase 7: 0 unrouted; (0)      REAL time: 27 secs 
+Phase 7: 0 unrouted; (0)      REAL time: 26 secs 
 
-Phase 8: 0 unrouted; (0)      REAL time: 28 secs 
+Phase 8: 0 unrouted; (0)      REAL time: 27 secs 
 
 WARNING:Route:455 - CLK Net:CLK_LCD_OBUF may have excessive skew because 
       0 CLK pins and 1 NON_CLK pins failed to route using a CLK template.
 
-Total REAL time to Router completion: 28 secs 
-Total CPU time to Router completion: 28 secs 
+Total REAL time to Router completion: 27 secs 
+Total CPU time to Router completion: 27 secs 
 
 Partition Implementation Status
 -------------------------------
@@ -131,8 +131,8 @@ Generating Pad Report.
 
 All signals are completely routed.
 
-Total REAL time to PAR completion: 31 secs 
-Total CPU time to PAR completion: 30 secs 
+Total REAL time to PAR completion: 29 secs 
+Total CPU time to PAR completion: 28 secs 
 
 Peak Memory Usage:  201 MB
 

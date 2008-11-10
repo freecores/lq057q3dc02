@@ -6,7 +6,7 @@ C:\Xilinx\ISE_9_2.
 speed -7
 Opened constraints file lq057q3dc02_top.pcf.
 
-Thu Nov 06 18:46:48 2008
+Sun Nov 09 22:14:49 2008
 
 bitgen -g StartUpClk:JTAGCLK -g GTS_cycle:1 -g GWE_cycle:1 -g LCK_cycle:2 -g DONE_cycle:4 -w lq057q3dc02_top.ncd 
 
